@@ -1,0 +1,65 @@
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: SAE NameSpace
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  SECRET_KEY:
+    Type: string
+    Label:
+      Zh-cn: Dify 的 API key
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  DB_URL:
+    Type: string
+    Label:
+      Zh-cn: 数据库链接地址
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  REDIS_URL:
+    Type: string
+    Label:
+      Zh-cn: Redis链接地址
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  REDIS_URL:
+    Type: string
+    Label:
+      Zh-cn: Redis链接地址
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  VECTOR_STORE:
+    Type: string
+    Label:
+      Zh-cn: 向量数据库类型
+    Required: true
+    MaxLength: 20
+    Component: Input
+  PG_VECTOR_URL:
+    Type: string
+    Label:
+      Zh-cn: PG向量数据库地址
+    Required: true
+    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+    Component: Input
+  NAS:
+    Type: string
+    Label:
+      Zh-cn: 向量数据库类型
+    Required: true
+    MaxLength: 20
+    Component: Input
+
