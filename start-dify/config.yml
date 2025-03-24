@@ -11,9 +11,10 @@ SceneProfiles:
   - DisplayName:
       zh-cn: Dify社区版
     Template: "templates/msa.yml"
+    DeployType: flow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
+    Spec: "templates/dify.sae.spec.yml"
     Parameters:
-      Backend:
-        Cpu: 1
-        Memory: 4096
+      DifyFlow:
+        Name: Dify
