@@ -1,6 +1,5 @@
 Composer:
-  DifyFlow:
-    Component: fc3
-    Engine: flow
+  SaeFlow:
+    Component: flow
     Parameters:
       Name: {{Subfix(Parameters.Name)}}

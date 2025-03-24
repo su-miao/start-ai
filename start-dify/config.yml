@@ -16,5 +16,5 @@ SceneProfiles:
       zh-cn: "docs/zh-cn/index.md"
     Spec: "templates/dify.sae.spec.yml"
     Parameters:
-      DifyFlow:
+      SaeFlow:
         Name: Dify
