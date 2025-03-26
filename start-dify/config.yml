@@ -11,7 +11,7 @@ SceneProfiles:
   - DisplayName:
       zh-cn: Dify社区版
     Template: "templates/cicd.yml"
-    DeployType: flow
+    DeployType: Flow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
     Spec: "templates/dify.sae.spec.yml"
