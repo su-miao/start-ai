@@ -1,5 +1,0 @@
-Composer:
-  SaeFlow:
-    Component: flow
-    Parameters:
-      Name: {{Subfix(Parameters.Name)}}

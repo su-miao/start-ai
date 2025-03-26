@@ -10,7 +10,7 @@ SceneMetadata:
 SceneProfiles:
   - DisplayName:
       zh-cn: Dify社区版
-    Template: "templates/msa.yml"
+    Template: "templates/cicd.yml"
     DeployType: flow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
