@@ -1,11 +1,18 @@
 Parameters:
-  NAMESPACE:
+  NamespaceId:
     Type: String
+    Component: Input
     Label:
       Zh-cn: 命名空间
       En: SAE NameSpace
     Required: true
     AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
+    MaxLength: 20
+  ServiceConnection:
+    Component: Input
+    Label:
+      Zh-cn: 服务连接
+    Required: true
     MaxLength: 20
   SECRET_KEY:
     Type: String
@@ -14,18 +21,11 @@ Parameters:
     Required: true
     AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
     MaxLength: 20
-    Component: Password
+    Component: Input
   DB_URL:
     Type: String
     Label:
       Zh-cn: 数据库链接地址
-    Required: true
-    AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
-    MaxLength: 20
-  REDIS_URL:
-    Type: String
-    Label:
-      Zh-cn: Redis链接地址
     Required: true
     AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
     MaxLength: 20

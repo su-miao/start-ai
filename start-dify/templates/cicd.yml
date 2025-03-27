@@ -22,10 +22,10 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: ${namespace}
-              namespace: ${namespace}
-              region: ${regionId}
-              serviceConnection: ${SAE服务连接}
+                  value: {{NamespaceId}}
+              namespace: {{NamespaceId}}
+              region: {{RegionId}}
+              serviceConnection: {{ServiceConnection}}
               yamlPath: configmap
         driven: auto
         plugins: []
@@ -45,40 +45,40 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: ${namespace}
+                  value: {{NamespaceId}}
                 - key: REDIS_HOST
-                  value: ${REDIS_HOST}
+                  value: {{RedisHost}}
                 - key: DB_PORT
-                  value: ${DB_PORT}
+                  value: {{DbPort}}
                 - key: SECRET_KEY
-                  value: ${SECRET_KEY}
+                  value: {{SecretKey}}
                 - key: DB_HOST
-                  value: ${DB_HOST}
+                  value: {{DbHost}}
                 - key: DB_USERNAME
-                  value: ${DB_USERNAME}
+                  value: {{DbUsername}}
                 - key: REDIS_PORT
-                  value: ${REDIS_PORT}
+                  value: {{RedisPort}}
                 - key: REDIS_PASSWORD
-                  value: ${REDIS_PASSWORD}
+                  value: {{RedisPassword}}
                 - key: REDIS_USERNAME
-                  value: ${REDIS_USERNAME}
+                  value: {{RedisUsername}}
                 - key: DB_DATABASE
-                  value: ${DB_DATABASE}
+                  value: {{DbDatabase}}
                 - key: DB_PASSWORD
-                  value: ${DB_PASSWORD}
+                  value: {{DbPassword}}
                 - key: VECTOR_STORE
                   value: pgvector
                 - key: PGVECTOR_HOST
-                  value: ${PGVECTOR_HOST}
+                  value: {{PgVectorHost}}
                 - key: PGVECTOR_PORT
-                  value: ${PGVECTOR_PORT}
+                  value: {{PgVectorPort}}
                 - key: PGVECTOR_USER
-                  value: ${PGVECTOR_USER}
+                  value: {{PgVectorUser}}
                 - key: PGVECTOR_PASSWORD
-                  value: ${PGVECTOR_PASSWORD}
-              namespace: ${namespace}
-              region: ${regionId}
-              serviceConnection: ${SAE服务连接}
+                  value: {{PgVectorPassword}}
+              namespace: {{NamespaceId}}
+              region: {{RegionId}}
+              serviceConnection: {{ServiceConnection}}
               yamlPath: secret
         driven: auto
         plugins: []
@@ -98,32 +98,32 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: ${namespace}
+                  value: {{NamespaceId}}
                 - key: REGION_ID
-                  value: ${regionId}
+                  value: {{RegionId}}
                 - key: ACCOUNT_ID
-                  value: ${accountId}
+                  value: {{AccountId}}
                 - key: DIFY_SANDBOX_IMAGE
-                  value: registry.${regionId}.aliyuncs.com/sae-dev-test/langgenius:dify-sandbox
+                  value: registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-sandbox
                 - key: DIFY_WEB_IMAGE
-                  value: registry.${regionId}.aliyuncs.com/sae-dev-test/langgenius:dify-web
+                  value: registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-web
                 - key: DIFY_API_IMAGE
-                  value: registry.${regionId}.aliyuncs.com/sae-dev-test/langgenius:dify-api
+                  value: registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-api
                 - key: DIFY_NGINX_IMAGE
-                  value: registry.${regionId}.aliyuncs.com/sae-dev-test/langgenius:nginx
+                  value: registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:nginx
                 - key: NAS_MOUNT_DOMAIN
-                  value: ${NAS_MOUNT_DOMAIN}
+                  value: {{NasMountDomain}}
                 - key: NAS_ID
-                  value: ${NAS_ID}
+                  value: {{NasId}}
                 - key: VPC_ID
-                  value: ${vpcId}
+                  value: {{VpcId}}
                 - key: SECURITY_GROUP_ID
-                  value: ${sgId}
+                  value: {{SecurityGroupId}}
                 - key: VSWITCH_LIST
-                  value: ${vswId}
-              namespace: ${namespace}
-              region: ${regionId}
-              serviceConnection: ${SAE服务连接}
+                  value: {{VswitchList}}
+              namespace: {{NamespaceId}}
+              region: {{RegionId}}
+              serviceConnection: {{ServiceConnection}}
               yamlPath: deployment
           step_1:
             name: 应用 RUNNING 状态监测
@@ -132,7 +132,7 @@ stages:
               variables: []
               ifGivenShell: true
               givenExecShell: bash
-              run: "#!/bin/bash\nset -eo pipefail\n\nNAMESPACE=\"${namespace}\"\
+              run: "#!/bin/bash\nset -eo pipefail\n\nNAMESPACE=\"{{NamespaceId}}\"\
                 \nMAX_RETRIES=60\nRETRY_DELAY=5\nDEPLOYMENTS=(\"dify-api\" \"dify-worker\"\
                 \ \"dify-sandbox\" \"dify-web\" \"dify-nginx\")\n\ncommand -v kubectl-sae\
                 \ >/dev/null 2>&1 || { \n    echo \"[FATAL] kubectl-sae 命令未找到\" >&2\n\
@@ -169,10 +169,10 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: ${namespace}
-              namespace: ${namespace}
-              region: ${regionId}
-              serviceConnection: ${serviceConnection}
+                  value: {{NamespaceId}}
+              namespace: {{NamespaceId}}
+              region: {{RegionId}}
+              serviceConnection: {{ServiceConnection}}
               yamlPath: service
           step_1:
             name: 服务就绪状态监测
@@ -180,7 +180,7 @@ stages:
             with:
               variables: []
               ifGivenShell: false
-              run: "set -eo pipefail\n\nNAMESPACE=\"${namespace}\"\nMAX_RETRIES=60\n\
+              run: "set -eo pipefail\n\nNAMESPACE=\"{{NamespaceId}}\"\nMAX_RETRIES=60\n\
                 RETRY_DELAY=5\n\ncommand -v kubectl-sae >/dev/null 2>&1 || { \n  \
                 \  echo \"[FATAL] kubectl-sae 命令未找到\" >&2\n    exit 127\n}\n\nif !\
                 \ kubectl-sae get ns \"$NAMESPACE\" -o name >/dev/null 2>&1; then\n\

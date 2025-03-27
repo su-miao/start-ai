@@ -14,7 +14,5 @@ SceneProfiles:
     DeployType: Flow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
-    Spec: "templates/dify.sae.spec.yml"
-    Parameters:
-      SaeFlow:
-        Name: Dify
+    Spec: "templates/cicd.spec.yml"
+
