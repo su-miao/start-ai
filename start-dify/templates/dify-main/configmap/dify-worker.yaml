@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  CONSOLE_CORS_ALLOW_ORIGINS: '*'
+  LOG_LEVEL: DEBUG
+  MODE: worker
+  REDIS_DB: "0"
+  REDIS_USE_SSL: "false"
+  STORAGE_LOCAL_PATH: /app/api/storage
+  STORAGE_TYPE: local
+  WEB_API_CORS_ALLOW_ORIGINS: '*'
+kind: ConfigMap
+metadata:
+  name: dify-worker
+  namespace: ${NAMESPACE}

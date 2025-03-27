@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    sae.aliyun.com/micro-registration: "0"
+    sae.aliyun.com/pvtz-discovery-svc: '{"enable":"true","namespaceId":"${REGION_ID}:${NAMESPACE}","portAndProtocol":{"8194:TCP":"8194"},"portProtocols":[],"pvtzDiscoveryName":"${REGION_ID}-${ACCOUNT_ID}","serviceName":"dify-sandbox.${NAMESPACE}"}'
+    sae.aliyun.com/security-group-id: ${SECURITY_GROUP_ID}
+    sae.aliyun.com/state: RUNNING
+    sae.aliyun.com/timezone: Asia/Shanghai
+    sae.aliyun.com/type: Image
+    sae.aliyun.com/vpc-id: ${VPC_ID}
+    sae.aliyun.com/vswitch-list: ${VSWITCH_LIST}
+  name: dify-sandbox
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      sae.aliyun.com/app-name: dify-sandbox
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        sae.aliyun.com/app-name: dify-sandbox
+    spec:
+      containers:
+      - env:
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              key: CODE_EXECUTION_API_KEY
+              name: dify-api
+        - name: GIN_MODE
+          value: release
+        - name: SANDBOX_PORT
+          value: "8194"
+        - name: WORKER_TIMEOUT
+          value: "15"
+        image: registry.cn-shenzhen.aliyuncs.com/sae-dev-test/langgenius:dify-sandbox
+        imagePullPolicy: Always
+        name: main
+        resources:
+          limits:
+            cpu: "4"
+            memory: 8Gi
+          requests:
+            cpu: "4"
+            memory: 8Gi
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

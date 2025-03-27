@@ -1,0 +1,28 @@
+Compose:
+  DifyWeb:
+    Component: sae-deployment
+  DifyApi:
+    Component: sae-deployment
+  DifyWorker:
+    Component: sae-worker
+  DifySandbox:
+    Component: sae-sandbox
+  DifyNginx:
+    Component: sae-deployment
+    DependsOn: 
+      - DifyWeb
+      - DifyApi
+      - DifyWorker
+      - DifySandbox
+    Routes:
+      - Path: /api
+        Target: DifyApi
+      - Path: /v1
+        Target: DifyApi
+      - Path: /files
+        Target: DifyApi
+      - Path: /
+        Target: DifyWeb
+  Service:
+    Component: sae-service
+    DependsOn: DifyNginx
