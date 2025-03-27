@@ -1,6 +1,6 @@
-Compose:
+Composer:
   DifyWeb:
-    Component: sae-deployment
+    Component: saectl
   DifyApi:
     Component: sae-deployment
   DifyWorker:

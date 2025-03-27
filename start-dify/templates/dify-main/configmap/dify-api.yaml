@@ -15,5 +15,5 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-  name: dify-api
-  namespace: ${NAMESPACE}
+    name: dify-api
+    namespace: ${NAMESPACE}
