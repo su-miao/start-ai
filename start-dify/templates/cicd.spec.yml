@@ -32,7 +32,7 @@ Parameters:
   REDIS_URL:
     Type: String
     Label:
-      Zh-cn: Redis链接地址
+      Zh-cn: Redis 链接地址
     Required: true
     AllowedPattern: '^[a-zA-Z0-9]{1,64}$'
     MaxLength: 20
