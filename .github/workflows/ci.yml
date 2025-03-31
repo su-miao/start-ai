@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  find-directories:
+    runs-on: ubuntu-latest
+    outputs:
+      directories: ${{ steps.set-dirs.outputs.directories }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Find modified directories
+        id: set-dirs
+        run: |
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            MODIFIED_PATHS=$(git diff --name-only HEAD^ HEAD)
+          else
+            echo "No parent commit found (initial commit), comparing against empty tree."
+            MODIFIED_PATHS=$(git diff-tree --no-commit-id --name-only -r HEAD)
+          fi
+
+          DIRECTORIES=()
+
+          for path in $MODIFIED_PATHS; do
+
+            if [[ "$path" == .github/* ]]; then
+              echo "Ignoring .github path: $path"
+              continue
+            fi
+
+            ROOT_DIR=$(echo "$path" | cut -d'/' -f1)
+            if [[ ! " ${DIRECTORIES[@]} " =~ " ${ROOT_DIR} " ]]; then
+              DIRECTORIES+=("$ROOT_DIR")
+            fi
+          done
+
+          if [[ ${#DIRECTORIES[@]} -eq 0 ]]; then
+            json_array="[]"
+          else
+            json_array="["
+            for dir in "${DIRECTORIES[@]}"; do
+              json_array+="\"$dir\","
+            done
+            json_array="${json_array%,}]"
+          fi
+
+          echo "Generated JSON array: $json_array"
+
+          echo "directories=$json_array" >> $GITHUB_OUTPUT
+
+  trigger-publish:
+    needs: find-directories
+    uses: ./.github/workflows/beta-registry-publish.yml
+    with:
+      project: ${{ matrix.dir }}
+    secrets:
+      FC_SERVICE: ${{ secrets.FC_SERVICE }}
+      FC_SERVICE_URL: ${{ secrets.FC_SERVICE_URL }}
+      FC_TOKEN: ${{ secrets.FC_TOKEN }}
+    strategy:
+      matrix:
+        dir: ${{ fromJson(needs.find-directories.outputs.directories) }}
