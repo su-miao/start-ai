@@ -1,28 +1,31 @@
-Composer:
-  DifyWeb:
-    Component: saectl
-  DifyApi:
-    Component: sae-deployment
-  DifyWorker:
-    Component: sae-worker
-  DifySandbox:
-    Component: sae-sandbox
-  DifyNginx:
-    Component: sae-deployment
-    DependsOn: 
-      - DifyWeb
-      - DifyApi
-      - DifyWorker
-      - DifySandbox
-    Routes:
-      - Path: /api
-        Target: DifyApi
-      - Path: /v1
-        Target: DifyApi
-      - Path: /files
-        Target: DifyApi
-      - Path: /
-        Target: DifyWeb
-  Service:
-    Component: sae-service
-    DependsOn: DifyNginx
+Application:
+  Ingress:
+    - Name: dify-ingress
+      Type: SLB
+  Runtime:
+    - Name: dify-nginx
+      Type: SAE
+    - Name: dify-web
+      DependsOn: dify-nginx
+      Type: SAE
+    - Name: dify-api
+      DependsOn: dify-nginx
+      Type: SAE
+    - Name: dify-worker
+      Type: SAE
+    - Name: dify-sandbox
+      Type: SAE
+  Storage:
+    - Name: store
+      Type: Nas
+  Database:
+    - Name: vector
+      Type: PostgreSQL
+    - Name: cache
+      Type: Redis
+    - Name: db
+      Type: Mysql
+
+
+
+
