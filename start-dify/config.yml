@@ -3,7 +3,7 @@ Parameters:
   Name: "start-dify"
 SceneMetadata:
   Name:
-    zh-cn: "Dify社区版"
+    zh-cn: "Dify 社区版"
   Description:
     zh-cn: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
   Logo: "resources/icons/scence_logo.png"
