@@ -2,26 +2,36 @@ Application:
   Ingress:
     - Name: dify-ingress
       Type: SLB
+      Data: {}
   Runtime:
     - Name: dify-nginx
       Type: SAE
+      Data: {}
     - Name: dify-web
       DependsOn: dify-nginx
       Type: SAE
+      Data: {}
     - Name: dify-api
       DependsOn: dify-nginx
       Type: SAE
+      Data: {}
     - Name: dify-worker
       Type: SAE
+      Data: {}
     - Name: dify-sandbox
       Type: SAE
+      Data: {}
   Storage:
     - Name: store
       Type: Nas
+      Data: {}
   Database:
     - Name: vector
       Type: PostgreSQL
+      Data: {}
     - Name: cache
       Type: Redis
+      Data: {}
     - Name: db
       Type: Mysql
+      Data: {}
