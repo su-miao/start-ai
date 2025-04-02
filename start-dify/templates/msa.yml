@@ -25,7 +25,3 @@ Application:
       Type: Redis
     - Name: db
       Type: Mysql
-
-
-
-
