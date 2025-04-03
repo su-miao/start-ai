@@ -7,10 +7,12 @@ Application:
     - Name: dify-nginx
       Type: SAE
       Data: {}
+      Spec: ./dify-nginx.yml
     - Name: dify-web
       DependsOn: dify-nginx
       Type: SAE
       Data: {}
+      Spec: ./dify-web.yml
     - Name: dify-api
       DependsOn: dify-nginx
       Type: SAE
