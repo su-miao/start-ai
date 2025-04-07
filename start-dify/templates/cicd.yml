@@ -16,7 +16,7 @@ stages:
     jobs:
       job_0:
         name: ConfigMap 配置项发布
-         runsOn:
+        runsOn:
           group: public/cn-beijing
           labels: 'linux,amd64'
           container: >-
