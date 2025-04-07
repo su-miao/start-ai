@@ -106,18 +106,7 @@ stages:
                   value: '{{RegionId}}'
                 - key: ACCOUNT_ID
                   value: '{{AccountId}}'
-                - key: DIFY_SANDBOX_IMAGE
-                  value: >-
-                    registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-sandbox
-                - key: DIFY_WEB_IMAGE
-                  value: >-
-                    registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-web
-                - key: DIFY_API_IMAGE
-                  value: >-
-                    registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:dify-api
-                - key: DIFY_NGINX_IMAGE
-                  value: >-
-                    registry.{{RegionId}}.aliyuncs.com/sae-dev-test/langgenius:nginx
+
                 - key: NAS_MOUNT_DOMAIN
                   value: '{{NasMountDomain}}'
                 - key: NAS_ID
@@ -196,7 +185,7 @@ stages:
                 }
 
 
-                for deploy in "${DEPLOYMENTS}[@]}"; do
+                for deploy in "${DEPLOYMENTS[@]}"; do
                     check_deployment "$deploy"
                 done
 
