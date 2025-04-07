@@ -1,17 +1,22 @@
 sources:
   repo_0:
-    type: git
-    name: dify_IsLy
-    endpoint: 'https://jihulab.com/sae1/dify.git'
-    branch: main
+    type: codeup
+    name: dify_eFGq
+    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/dify.git'
+    branch: master
+    triggerEvents:
+      - push
+    certificate:
+      type: serviceConnection
+      serviceConnection: {{ServiceConnection}}
 defaultWorkspace: repo_0
 stages:
   stage_0:
-    name: 新阶段
+    name: 阶段1
     jobs:
       job_0:
         name: ConfigMap 配置项发布
-        runsOn:
+         runsOn:
           group: public/cn-beijing
           labels: 'linux,amd64'
           container: >-
@@ -19,15 +24,17 @@ stages:
         steps:
           step_0:
             name: Kubectl SAE 发布
-            step: FlowKubectlSae
+            step: private/KubectlSae
             with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
                   value: '{{NamespaceId}}'
               namespace: '{{NamespaceId}}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
               region: '{{RegionId}}'
-              serviceConnection: '{{ServiceConnection}}'
-              yamlPath: configmap
+              yamlPath: manifests/configmap.yaml
         driven: auto
         plugins: []
   stage_1:
@@ -43,45 +50,39 @@ stages:
         steps:
           step_0:
             name: Kubectl SAE 发布
-            step: FlowKubectlSae
+            step: private/KubectlSae
             with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
-                  value: '{{NamespaceId}}'
+                  value: {{NAMESPACE}}
                 - key: REDIS_HOST
-                  value: '{{RedisHost}}'
-                - key: DB_PORT
-                  value: '{{DbPort}}'
+                  value: {{REDIS_HOST}}
+                - key: CELERY_BROKER_URL
+                  value: 'redis://:{{REDIS_PASSWORD}}@{{REDIS_HOST}}:6379/1'
                 - key: SECRET_KEY
-                  value: '{{SecretKey}}'
-                - key: DB_HOST
-                  value: '{{DbHost}}'
-                - key: DB_USERNAME
-                  value: '{{DbUsername}}'
-                - key: REDIS_PORT
-                  value: '{{RedisPort}}'
-                - key: REDIS_PASSWORD
-                  value: '{{RedisPassword}}'
-                - key: REDIS_USERNAME
-                  value: '{{RedisUsername}}'
-                - key: DB_DATABASE
-                  value: '{{DbDatabase}}'
-                - key: DB_PASSWORD
-                  value: '{{DbPassword}}'
-                - key: VECTOR_STORE
-                  value: pgvector
-                - key: PGVECTOR_HOST
-                  value: '{{PgVectorHost}}'
-                - key: PGVECTOR_PORT
-                  value: '{{PgVectorPort}}'
-                - key: PGVECTOR_USER
-                  value: '{{PgVectorUser}}'
+                  value: {{SECRET_KEY}}
                 - key: PGVECTOR_PASSWORD
-                  value: '{{PgVectorPassword}}'
-              namespace: '{{NamespaceId}}'
-              region: '{{RegionId}}'
-              serviceConnection: '{{ServiceConnection}}'
-              yamlPath: secret
+                  value: {{PGVECTOR_PASSWORD}}
+                - key: DB_HOST
+                  value: {{DB_HOST}}
+                - key: PGVECTOR_USER
+                  value: {{PGVECTOR_USER}}
+                - key: DB_USERNAME
+                  value: {{DB_USERNAME}}
+                - key: PGVECTOR_HOST
+                  value: {{PGVECTOR_HOST}}
+                - key: REDIS_PASSWORD
+                  value: {{REDIS_PASSWORD}}
+                - key: REDIS_USERNAME
+                  value: {{REDIS_USERNAME}}
+                - key: DB_PASSWORD
+                  value: {{DB_PASSWORD}}
+              namespace: {{NAMESPACE}}
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: {{REGION_ID}}
+              yamlPath: manifests/secret.yaml
         driven: auto
         plugins: []
   stage_2:
@@ -97,37 +98,41 @@ stages:
         steps:
           step_0:
             name: Kubectl SAE 发布
-            step: FlowKubectlSae
+            step: private/KubectlSae
             with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
                   value: '{{NamespaceId}}'
                 - key: REGION_ID
-                  value: '{{RegionId}}'
+                  value: {{RegionId}}
                 - key: ACCOUNT_ID
-                  value: '{{AccountId}}'
-
-                - key: NAS_MOUNT_DOMAIN
-                  value: '{{NasMountDomain}}'
-                - key: NAS_ID
-                  value: '{{NasId}}'
+                  value: {{AccountId}}
+                - key: PLUGIN_NAS_ID
+                  value: {{NasId}}
+                - key: PLUGIN_NAS_MOUNT_DOMAIN
+                  value: {{NasMountDomain}}
+                - key: API_NAS_MOUNT_DOMAIN
+                  value: {{API_NAS_MOUNT_DOMAIN}}
                 - key: VPC_ID
-                  value: '{{VpcId}}'
+                  value: {{VPC_ID}}
                 - key: SECURITY_GROUP_ID
-                  value: '{{SecurityGroupId}}'
+                  value: {{SECURITY_GROUP_ID}}
+                - key: API_NAS_ID
+                  value: {{API_NAS_ID}}
                 - key: VSWITCH_LIST
-                  value: '{{VswitchList}}'
-              namespace: '{{NamespaceId}}'
-              region: '{{RegionId}}'
-              serviceConnection: '{{ServiceConnection}}'
-              yamlPath: deployment
+                  value: {{VSWITCH_LIST}}
+              namespace: {{NAMESPACE}}
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: {{REGION_ID}}
+              yamlPath: manifests/deployment.yaml
           step_1:
-            name: 应用 RUNNING 状态监测
+            name: 应用 RUNNING 状态检测
             step: Command
             with:
               variables: []
-              ifGivenShell: true
-              givenExecShell: bash
+              ifGivenShell: false
               run: >
                 #!/bin/bash
 
@@ -166,11 +171,11 @@ stages:
                     while (( attempt++ < MAX_RETRIES )); do
                         if output=$(kubectl-sae get deployment.apps/"$deployment" -n "$NAMESPACE" 2>&1); then
                             if echo "$output" | grep -q "RUNNING"; then
-                             echo "[SUCCESS] $deployment 状态正常"
-                              return 0
+                                echo "[SUCCESS] $deployment 状态正常"
+                                return 0
                             fi
                         else
-                            echo "[ERROR] 获取状态失败: ..."
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
                         fi
 
                         if (( attempt % 5 == 0 )); then
@@ -208,17 +213,19 @@ stages:
         steps:
           step_0:
             name: Kubectl SAE 发布
-            step: FlowKubectlSae
+            step: private/KubectlSae
             with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
                   value: '{{NamespaceId}}'
               namespace: '{{NamespaceId}}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
               region: '{{RegionId}}'
-              serviceConnection: '{{ServiceConnection}}'
-              yamlPath: service
+              yamlPath: manifests/service.yaml
           step_1:
-            name: 服务就绪状态监测
+            name: Service 就绪状态检测
             step: Command
             with:
               variables: []
@@ -235,7 +242,7 @@ stages:
 
 
                 command -v kubectl-sae >/dev/null 2>&1 || { 
-                  echo "[FATAL] kubectl-sae 命令未找到" >&2
+                    echo "[FATAL] kubectl-sae 命令未找到" >&2
                     exit 127
                 }
 
@@ -254,11 +261,11 @@ stages:
                     while (( attempt++ < MAX_RETRIES )); do
                         if output=$(kubectl-sae get service internet-dify-nginx -n "$NAMESPACE" 2>&1); then
                             if ! echo "$output" | grep -q "pending"; then
-                               echo "[SUCCESS] internet-dify-nginx 状态正常"
-                            return 0
+                                echo "[SUCCESS] internet-dify-nginx 状态正常"
+                                return 0
                             fi
                         else
-                            echo "[ERROR] 获取状态失败: ..."
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
                         fi
 
                         if (( attempt % 5 == 0 )); then
