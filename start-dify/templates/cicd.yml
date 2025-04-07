@@ -30,10 +30,10 @@ stages:
               stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
-                  value: '{{NamespaceId}}'
-              namespace: '{{NamespaceId}}'
+                  value: '{{NAMESPACE}}'
+              namespace: '{{NAMESPACE}}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
-              region: '{{RegionId}}'
+              region: '{{REGION_ID}}'
               yamlPath: manifests/configmap.yaml
         driven: auto
         plugins: []
@@ -104,15 +104,15 @@ stages:
               stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
-                  value: '{{NamespaceId}}'
+                  value: '{{NAMESPACE}}'
                 - key: REGION_ID
-                  value: {{RegionId}}
+                  value: {{REGION_ID}}
                 - key: ACCOUNT_ID
-                  value: {{AccountId}}
+                  value: {{ACCOUNT_ID}}
                 - key: PLUGIN_NAS_ID
-                  value: {{NasId}}
+                  value: {{PLUGIN_NAS_ID}}
                 - key: PLUGIN_NAS_MOUNT_DOMAIN
-                  value: {{NasMountDomain}}
+                  value: {{PLUGIN_NAS_MOUNT_DOMAIN}}
                 - key: API_NAS_MOUNT_DOMAIN
                   value: {{API_NAS_MOUNT_DOMAIN}}
                 - key: VPC_ID
@@ -139,7 +139,7 @@ stages:
                 set -eo pipefail
 
 
-                NAMESPACE="{{NamespaceId}}"
+                NAMESPACE="{{NAMESPACE}}"
 
                 MAX_RETRIES=60
 
@@ -219,10 +219,10 @@ stages:
               stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
-                  value: '{{NamespaceId}}'
-              namespace: '{{NamespaceId}}'
+                  value: '{{NAMESPACE}}'
+              namespace: '{{NAMESPACE}}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
-              region: '{{RegionId}}'
+              region: '{{REGION_ID}}'
               yamlPath: manifests/service.yaml
           step_1:
             name: Service 就绪状态检测
@@ -234,7 +234,7 @@ stages:
                 set -eo pipefail
 
 
-                NAMESPACE="{{NamespaceId}}"
+                NAMESPACE="{{NAMESPACE}}"
 
                 MAX_RETRIES=60
 
