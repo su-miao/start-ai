@@ -7,12 +7,10 @@ Application:
     - Name: dify-nginx
       Type: SAE
       Data: {}
-      Spec: ./dify-nginx.yml
     - Name: dify-web
       DependsOn: dify-nginx
       Type: SAE
       Data: {}
-      Spec: ./dify-web.yml
     - Name: dify-api
       DependsOn: dify-nginx
       Type: SAE
@@ -26,14 +24,22 @@ Application:
   Storage:
     - Name: store
       Type: Nas
+      Spec: './api_nas.spec.yml'
+      Data: {}
+    - Name: store
+      Type: Nas
+      Spec: './plugin_nas.spec.yml'
       Data: {}
   Database:
     - Name: vector
       Type: PostgreSQL
       Data: {}
+      Spec: './pgvector.spec.yml'
     - Name: cache
       Type: Redis
       Data: {}
+      Spec: './redis.spec.yml'
     - Name: db
       Type: Mysql
       Data: {}
+      Spec: './db.spec.yml'

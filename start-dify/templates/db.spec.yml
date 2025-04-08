@@ -1,0 +1,22 @@
+Envs:
+  RegionId: {{RegionId}}
+Parameters:
+  DbConfig:
+    Type: json
+    Label: 
+      Zh-cn: Db 数据库配置
+      En: Db Database Config
+    Required: true
+    Component: Component::DB::Redis
+    ComponentProps:
+      Hideform:
+        - verify
+      CoverSource:
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: 5432
+          componentProps:
+            disabled: true

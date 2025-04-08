@@ -1,0 +1,23 @@
+Envs:
+  RegionId: {{RegionId}}
+Parameters:
+  PgVectorConfig:
+    Type: json
+    Label: 
+      Zh-cn: PgVector 数据库
+      En: PgVector Database Config
+    Required: true
+    Component: Component::DB::Redis
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: 5432
+          componentProps:
+            disabled: true
