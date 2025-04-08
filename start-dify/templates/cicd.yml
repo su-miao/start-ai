@@ -8,7 +8,7 @@ sources:
       - push
     certificate:
       type: serviceConnection
-      serviceConnection: tk6qgcjcofquhcuc
+      serviceConnection: {{ServiceConnection}}
 defaultWorkspace: repo_0
 stages:
   stage_0:
