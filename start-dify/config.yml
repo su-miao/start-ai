@@ -14,5 +14,7 @@ SceneProfiles:
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
     Spec: "templates/cicd.spec.yml"
-    Template: "templates/msa.yml"
+    Template: "templates/cicd.yml"
+    FormTemplate: "templates/msa.yml"
+
 
