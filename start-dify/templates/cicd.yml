@@ -58,7 +58,7 @@ stages:
                 - key: REDIS_HOST
                   value: {{REDIS_HOST}}
                 - key: CELERY_BROKER_URL
-                  value: 'redis://:{{REDIS_PASSWORD}}@{{REDIS_HOST}}:6379/1'
+                  value: {{CELERY_BROKER_URL}}
                 - key: SECRET_KEY
                   value: {{SECRET_KEY}}
                 - key: PGVECTOR_PASSWORD
