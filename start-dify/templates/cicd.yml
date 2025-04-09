@@ -4,11 +4,9 @@ sources:
     name: dify_eFGq
     endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/dify.git'
     branch: master
-    triggerEvents:
-      - push
     certificate:
       type: serviceConnection
-      serviceConnection: {{ServiceConnection}}
+      serviceConnection: jsoo5b59y5n9sfc8
 defaultWorkspace: repo_0
 stages:
   stage_0:
