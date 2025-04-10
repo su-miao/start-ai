@@ -1,0 +1,195 @@
+Envs:
+  RegionId: {{region}}
+  AccountId: {{AccountId}}
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: Namespace
+    Required: true
+    Component: 'Component::SAE::Namespace'
+    ComponentProps:
+      HasClear: true
+      ShowRefresh: true
+      Value: {{namespaceId}}
+      OnChange: {{onNamespaceChange}}
+  VPC_ID:
+    Type: string
+    Label:
+      Zh-cn: Vpc
+      En: VpcID
+    Component: Text
+    ComponentProps:
+      Value: {{vpcId}}
+  VSWITCH_LIST:
+    Type: string
+    Label:
+      Zh-cn: 交换机
+      En: VSwitchID
+    Component: 'Component::VPC::VSwitches'
+    ComponentProps:
+      VpcId: {{vpcId}}
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建交换机
+        ExternalLink: 'https://vpc.console.aliyun.com/vpc/cn-shenzhen/switches'
+  SECURITY_GROUP_ID:
+    Type: string
+    Label:
+      Zh-cn: 选择安全组
+      En: Security Group
+    Component: 'Component::ECS::SecurityGroup'
+    ComponentProps:
+      VpcId: {{vpcId}}
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建安全组
+        ExternalLink: 'https://ecs.console.aliyun.com/cn-shenzhen/vpc/securityGroup'
+  SECRET_KEY:
+    Type: String
+    Label:
+      Zh-cn: Secret Key
+      En: Secret Key
+    Required: true
+    Component: Input
+  DbConfig:
+    Type: json
+    Label:
+      Zh-cn: Db 数据库配置
+      En: Db 数据库配置
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+      CoverSource:
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '5432'
+          componentProps:
+            disabled: true
+  RedisConfig:
+    Type: json
+    Label:
+      Zh-cn: Redis数据库
+      En: Redis数据库
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '6379'
+          componentProps:
+            disabled: true
+  PgVectorConfig:
+    Type: json
+    Label:
+      Zh-cn: PgVector 数据库
+      En: PgVector 数据库
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '5432'
+          componentProps:
+            disabled: true
+  Api_NasConfig:
+    Type: json
+    Label:
+      Zh-cn: 选择 API NAS 文件系统
+      En: 选择 API NAS 文件系统
+    LabelMountTarget:
+      Zh-cn: 选择挂载点
+      En: 选择挂载点
+    Required: true
+    Component: 'Component::NAS::MountTarget'
+    ComponentProps:
+      VpcId: {{vpcId}}
+      NasId:
+        hasClear: true
+        showRefresh: true
+        showExternalLink: true
+        externalLabel: 创建NAS文件系统
+        externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
+  Plugin_NasConfig:
+    Type: json
+    Label:
+      Zh-cn: 选择 Plugin NAS 文件系统
+      En: 选择 Plugin NAS 文件系统
+    LabelMountTarget:
+      Zh-cn: 选择挂载点
+      En: 选择挂载点
+    Required: true
+    Component: 'Component::NAS::MountTarget'
+    ComponentProps:
+      VpcId: {{vpcId}}
+      nasId:
+        hasClear: true
+        showRefresh: true
+        showExternalLink: true
+        externalLabel: 创建NAS文件系统
+        externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
+MetaData:
+  - Label:
+      Zh-cn: 基础配置
+      En: Basic Config
+    Parameters:
+      - NAMESPACE
+      - VPC_ID
+      - VSWITCH_LIST
+      - SECURITY_GROUP_ID
+      - SECRET_KEY
+    Expanded: true
+  - Label:
+      Zh-cn: DB 数据库配置
+      En: DB 数据库配置
+    Parameters:
+      - DbConfig
+    Expanded: true
+  - Label:
+      Zh-cn: Redis 数据库配置
+      En: Redis 数据库配置
+    Parameters:
+      - RedisConfig
+    Expanded: true
+  - Label:
+      Zh-cn: PgVector 数据库配置
+      En: PgVector 数据库配置
+    Parameters:
+      - PgVectorConfig
+    Expanded: true
+  - Label:
+      Zh-cn: API Nas 存储配置
+      En: API Nas 存储配置
+    Parameters:
+      - Api_NasConfig
+    Expanded: true
+  - Label:
+      Zh-cn: Plugin Nas 存储配置
+      En: Plugin Nas 存储配置
+    Parameters:
+      - Plugin_NasConfig
+    Expanded: true
