@@ -29,6 +29,10 @@ stages:
               variables:
                 - key: NAMESPACE
                   value: '{{NAMESPACE}}'
+                - key: DB_DATABASE_NAME
+                  value: '{{DB_DATABASE_NAME}}'
+                - key: DB_PLUGIN_DATABASE_NAME
+                  value: '{{DB_PLUGIN_DATABASE_NAME}}'
               namespace: '{{NAMESPACE}}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               region: '{{REGION_ID}}'
