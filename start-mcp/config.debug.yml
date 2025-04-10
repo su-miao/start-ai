@@ -1,0 +1,19 @@
+Parameters:
+  RegionId: "cn-hangzhou"
+  Name: "start-manus"
+SceneMetadata:
+  Name:
+    zh-cn: "MCP Server"
+  Description:
+    zh-cn: "MCP Server 官方示例，基于 SSE 协议"
+  Logo: "resources/icons/scence_logo.png"
+SceneProfiles:
+  - DisplayName:
+      zh-cn: MCP Server
+    DeployType: SaeFlow
+    Documentation:
+      zh-cn: "docs/zh-cn/index.md"
+    Spec: "templates/cicd.spec.yml"
+    Template: "templates/cicd.yml"
+    FormTemplate: "templates/form.yml"
+

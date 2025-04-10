@@ -1,0 +1,19 @@
+Parameters:
+  RegionId: "cn-hangzhou"
+  Name: "start-manus"
+SceneMetadata:
+  Name:
+     zh-cn: "Open Manus"
+  Description:
+    zh-cn: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能"
+  Logo: "resources/icons/scence_logo.png"
+SceneProfiles:
+ - DisplayName:
+      zh-cn: Open Manus
+    DeployType: SaeFlow
+    Documentation:
+      zh-cn: "docs/zh-cn/index.md"
+    Spec: "templates/cicd.spec.yml"
+    Template: "templates/cicd.yml"
+    FormTemplate: "templates/form.yml"
+
