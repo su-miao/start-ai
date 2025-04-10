@@ -1,6 +1,6 @@
 Envs:
-  RegionId: ${region}
-  AccountId: ${AccountId}
+  RegionId: {{region}}
+  AccountId: {{AccountId}}
 Parameters:
   NAMESPACE:
     Type: string
@@ -12,8 +12,8 @@ Parameters:
     ComponentProps:
       HasClear: true
       ShowRefresh: true
-      Value: ${namespaceId}
-      OnChange: ${onNamespaceChange}
+      Value: {{namespaceId}}
+      OnChange: {{onNamespaceChange}}
   VPC_ID:
     Type: string
     Label:
@@ -21,7 +21,7 @@ Parameters:
       En: VpcID
     Component: Text
     ComponentProps:
-      Value: ${vpcId}
+      Value: {{vpcId}}
   VSWITCH_LIST:
     Type: string
     Label:
@@ -29,13 +29,13 @@ Parameters:
       En: VSwitchID
     Component: 'Component::VPC::VSwitches'
     ComponentProps:
-      VpcId: ${vpcId}
+      VpcId: {{vpcId}}
       SelectProps:
         HasClear: true
         ShowRefresh: true
         ShowExternalLink: true
         ExternalLabel: 创建交换机
-        ExternalLink: 'https://vpc.console.aliyun.com/vpc/${region}/switches'
+        ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
   SECURITY_GROUP_ID:
     Type: string
     Label:
@@ -43,13 +43,13 @@ Parameters:
       En: Security Group
     Component: 'Component::ECS::SecurityGroup'
     ComponentProps:
-      VpcId: ${vpcId}
+      VpcId: {{vpcId}}
       SelectProps:
         HasClear: true
         ShowRefresh: true
         ShowExternalLink: true
         ExternalLabel: 创建安全组
-        ExternalLink: 'https://ecs.console.aliyun.com/${region}/vpc/securityGroup'
+        ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'
   SECRET_KEY:
     Type: String
     Label:
@@ -127,13 +127,13 @@ Parameters:
     Required: true
     Component: 'Component::NAS::MountTarget'
     ComponentProps:
-      VpcId: ${vpcId}
+      VpcId: {{vpcId}}
       NasId:
         hasClear: true
         showRefresh: true
         showExternalLink: true
         externalLabel: 创建NAS文件系统
-        externalLink: 'https://nas.console.aliyun.com/nas/${region}/cn-shenzhen/fileSystems'
+        externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
   Plugin_NasConfig:
     Type: json
     Label:
@@ -145,13 +145,13 @@ Parameters:
     Required: true
     Component: 'Component::NAS::MountTarget'
     ComponentProps:
-      VpcId: ${vpcId}
+      VpcId: {{vpcId}}
       nasId:
         hasClear: true
         showRefresh: true
         showExternalLink: true
         externalLabel: 创建NAS文件系统
-        externalLink: 'https://nas.console.aliyun.com/nas/${region}/cn-shenzhen/fileSystems'
+        externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
 MetaData:
   - Label:
       Zh-cn: 基础配置
