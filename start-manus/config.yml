@@ -5,7 +5,7 @@ SceneMetadata:
   Name:
     zh-cn: "Open Manus"
   Description:
-    zh-cn: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能"
+    zh-cn: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能。（该模板镜像较大，约12G，实例启动大约12分钟）"
   Logo: "resources/icons/scence_logo.png"
 SceneProfiles:
   - DisplayName:
