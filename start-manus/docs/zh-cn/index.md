@@ -22,7 +22,7 @@
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744340827296-ced4ff5a-aa03-4026-a6d5-e5a281729c99.png)
 
-2. 运行 python main.py，进入交互模式，输入 Prompt：`<font style="color:rgb(42, 47, 69);">Help me write a research report on Alibaba Cloud SAE and save it as a Markdown file.</font>`
+2. 运行 python main.py，进入交互模式，输入 Prompt：Help me write a research report on Alibaba Cloud SAE and save it as a Markdown file.
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744341179432-59f463af-3d44-40b9-8339-01cf0a87fadc.png)
 
