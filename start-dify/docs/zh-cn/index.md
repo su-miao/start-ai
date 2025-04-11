@@ -41,16 +41,16 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/168355/1744346068396-6597651b-458b-47c7-86fd-24e364e3d1e7.png)
 
-7. 验证与使用
-    1. 访问 Dify 公网访问地址，初次登陆会要求设置管理员账户
+# 验证与使用
+1. 访问 Dify 公网访问地址，初次登陆会要求设置管理员账户
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/168355/1744346218480-fd097fb5-692c-49a3-9bd2-e2c264e06f0d.png)
 
-    2. 设置完成管理员账户后，登录 Dify
+2. 设置完成管理员账户后，登录 Dify
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/168355/1744346255071-bf175ad5-6ac3-474f-b574-925126c97427.png)
 
-    3. 登录后就可以参考 [Dify 社区文档](https://github.com/langgenius/dify/blob/main/README_CN.md) 使用 Dify
+3. 登录后就可以参考 [Dify 社区文档](https://github.com/langgenius/dify/blob/main/README_CN.md) 使用 Dify
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/168355/1744346358447-e66e86d5-09a3-4a08-bf22-137c1cc36871.png)
 

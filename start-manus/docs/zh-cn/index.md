@@ -17,16 +17,16 @@
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744341637627-060771bf-61e4-4ecc-b4a3-8514849af0c9.png)
 
-4. 验证与使用
-    1. 登陆应用实例 webshell
+# 验证与使用
+1. 登陆应用实例 webshell
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744340827296-ced4ff5a-aa03-4026-a6d5-e5a281729c99.png)
 
-    2. 运行 python main.py，进入交互模式，输入 Prompt：<font style="color:rgb(42, 47, 69);">Help me write a research report on Alibaba Cloud SAE and save it as a Markdown file.</font>
+2. 运行 python main.py，进入交互模式，输入 Prompt：`<font style="color:rgb(42, 47, 69);">Help me write a research report on Alibaba Cloud SAE and save it as a Markdown file.</font>`
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744341179432-59f463af-3d44-40b9-8339-01cf0a87fadc.png)
 
-    3. 执行完成后，文件会默认保存在 workspace 目录下
+3. 执行完成后，文件会默认保存在 workspace 目录下
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2025/png/312062/1744342350837-6624cab3-efe4-4b96-8b1c-152ba3919e8e.png)
 
