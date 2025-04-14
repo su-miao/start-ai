@@ -29,17 +29,17 @@ stages:
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               variables:
                 - key: NAMESPACE
-                  value: {{NAMESPACE}}
+                  value: '{{NAMESPACE}}'
                 - key: API_KEY
-                  value: {{API_KEY}}
+                  value: '{{API_KEY}}'
                 - key: VPC_ID
-                  value: {{VPC_ID}}
+                  value: '{{VPC_ID}}'
                 - key: MODEL
-                  value: {{MODEL}}
+                  value: '{{MODEL}}'
                 - key: BASE_URL
-                  value: {{BASE_URL}}
-              namespace: {{NAMESPACE}}
-              region: cn-shenzhen
+                  value: '{{BASE_URL}}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
               yamlPath: ./manifests/config.yaml
         driven: auto
         plugins: []
@@ -63,19 +63,19 @@ stages:
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               variables:
                 - key: NAMESPACE
-                  value: {{NAMESPACE}}
+                  value: '{{NAMESPACE}}'
                 - key: APP_NAME
                   value: open-manus
                 - key: VPC_ID
-                  value: {{VPC_ID}}
+                  value: '{{VPC_ID}}'
                 - key: SECURITY_GROUP_ID
-                  value: {{SECURITY_GROUP_ID}}
+                  value: '{{SECURITY_GROUP_ID}}'
                 - key: VSWITCH_LIST
-                  value: {{VSWITCH_LIST}}
+                  value: '{{VSWITCH_LIST}}'
                 - key: REGION_ID
-                  value: {{REGION_ID}}
-              namespace: {{NAMESPACE}}
-              region: cn-shenzhen
+                  value: '{{REGION_ID}}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
               yamlPath: ./manifests/deployment.yaml
         driven: auto
         plugins: []
