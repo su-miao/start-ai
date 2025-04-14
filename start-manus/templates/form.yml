@@ -56,7 +56,9 @@ Parameters:
       Zh-cn: Secret Key
       En: Secret Key
     Required: true
-    Component: Input
+    Component: Password
+    ComponentProps:
+      Placeholder: 请输入Secret Key
   Model:
     Type: String
     Label:
