@@ -128,12 +128,13 @@ Parameters:
     Component: 'Component::NAS::MountTarget'
     ComponentProps:
       VpcId: "{{vpcId}}"
-      NasId:
-        hasClear: true
-        showRefresh: true
-        showExternalLink: true
-        externalLabel: 创建NAS文件系统
-        externalLink: 'https://nas.console.aliyun.com/nas/"{{region}}"/cn-shenzhen/fileSystems'
+      SelectProps:
+        NasId:
+          hasClear: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/"{{region}}"/cn-shenzhen/fileSystems'
   Plugin_NasConfig:
     Type: json
     Label:
@@ -146,12 +147,13 @@ Parameters:
     Component: 'Component::NAS::MountTarget'
     ComponentProps:
       VpcId: "{{vpcId}}"
-      nasId:
-        hasClear: true
-        showRefresh: true
-        showExternalLink: true
-        externalLabel: 创建NAS文件系统
-        externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
+      SelectProps:
+        nasId:
+          hasClear: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
 MetaData:
   - Label:
       Zh-cn: 基础配置
