@@ -50,15 +50,6 @@ Parameters:
         ShowExternalLink: true
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'
-  SECRET_KEY:
-    Type: String
-    Label:
-      Zh-cn: Secret Key
-      En: Secret Key
-    Required: true
-    Component: Password
-    ComponentProps:
-      Placeholder: 请输入Secret Key
   Model:
     Type: String
     Label:
