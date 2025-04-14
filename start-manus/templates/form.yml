@@ -50,7 +50,7 @@ Parameters:
         ShowExternalLink: true
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'
-  Model:
+  MODEL:
     Type: String
     Label:
       Zh-cn: 大模型名称
