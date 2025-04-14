@@ -73,3 +73,10 @@ Parameters:
     Component: Password
     ComponentProps:
       Placeholder: 请输入API Key
+  BASE_URL:
+    Type: String
+    Label:
+      Zh-cn: Endpoint
+      En: Endpoint
+    Required: true
+    Component: Input
