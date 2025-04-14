@@ -49,25 +49,34 @@ Parameters:
         ShowRefresh: true
         ShowExternalLink: true
         ExternalLabel: 创建安全组
-        ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'
+        ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
   SECRET_KEY:
     Type: String
     Label:
       Zh-cn: Secret Key
       En: Secret Key
     Required: true
-    Component: Input
+    Component: Password
+    ComponentProps:
+      Placeholder: 请输入Secret Key
   DbConfig:
     Type: json
     Label:
-      Zh-cn: Db 数据库配置
-      En: Db 数据库配置
+      Zh-cn: Postgres 数据库配置
+      En: Postgres 数据库配置
+      Link: 'https://rdsnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云数据库RDS
     Required: true
     Component: 'Component::DB::Redis'
     ComponentProps:
       Hideform:
         - verify
       CoverSource:
+        - label: "数据库地址"
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
         - label: 端口
           key: port
           required: true
@@ -76,11 +85,22 @@ Parameters:
           defaultValue: '5432'
           componentProps:
             disabled: true
+  DB_PLUGIN_DATABASE_NAME:
+    Type: string
+    Label:
+      Zh-cn: 插件数据库名称
+      En: 插件数据库名称
+    Component: Input
+    ComponentProps:
+      DefaultValue: dify_plugin
   RedisConfig:
     Type: json
     Label:
       Zh-cn: Redis数据库
       En: Redis数据库
+      Link: 'https://kvstore.console.aliyun.com/Redis'
+      LinkLabel:
+        Zh-cn: 云数据库 Tair
     Required: true
     Component: 'Component::DB::Redis'
     ComponentProps:
@@ -88,6 +108,10 @@ Parameters:
         - verify
         - database
       CoverSource:
+        - label: "Redis 连接地址"
+          key: host
+          required: true
+          requiredMessage: 请输入 Redis 连接地址
         - label: 端口
           key: port
           required: true
@@ -99,8 +123,11 @@ Parameters:
   PgVectorConfig:
     Type: json
     Label:
-      Zh-cn: PgVector 数据库
-      En: PgVector 数据库
+      Zh-cn: 向量数据库 AnalyticDB 配置
+      En: 向量数据库 AnalyticDB 配置
+      Link: 'https://gpdbnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云原生数据仓库 AnalyticDB PostgreSQL
     Required: true
     Component: 'Component::DB::Redis'
     ComponentProps:
@@ -108,6 +135,10 @@ Parameters:
         - verify
         - database
       CoverSource:
+        - label: "数据库地址"
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
         - label: 端口
           key: port
           required: true
@@ -134,7 +165,7 @@ Parameters:
           showRefresh: true
           showExternalLink: true
           externalLabel: 创建NAS文件系统
-          externalLink: 'https://nas.console.aliyun.com/nas/"{{region}}"/cn-shenzhen/fileSystems'
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
   Plugin_NasConfig:
     Type: json
     Label:
@@ -148,12 +179,12 @@ Parameters:
     ComponentProps:
       VpcId: "{{vpcId}}"
       SelectProps:
-        nasId:
+        NasId:
           hasClear: true
           showRefresh: true
           showExternalLink: true
           externalLabel: 创建NAS文件系统
-          externalLink: 'https://nas.console.aliyun.com/nas/{{region}}/cn-shenzhen/fileSystems'
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
 MetaData:
   - Label:
       Zh-cn: 基础配置
@@ -166,10 +197,11 @@ MetaData:
       - SECRET_KEY
     Expanded: true
   - Label:
-      Zh-cn: DB 数据库配置
-      En: DB 数据库配置
+      Zh-cn: Postgres 数据库配置
+      En: Postgres 数据库配置
     Parameters:
       - DbConfig
+      - DB_PLUGIN_DATABASE_NAME
     Expanded: true
   - Label:
       Zh-cn: Redis 数据库配置
@@ -178,20 +210,20 @@ MetaData:
       - RedisConfig
     Expanded: true
   - Label:
-      Zh-cn: PgVector 数据库配置
-      En: PgVector 数据库配置
+      Zh-cn: 向量数据库AnalyticDB配置
+      En: 向量数据库AnalyticDB配置
     Parameters:
       - PgVectorConfig
     Expanded: true
   - Label:
-      Zh-cn: API Nas 存储配置
-      En: API Nas 存储配置
+      Zh-cn: API NAS 存储配置
+      En: API NAS 存储配置
     Parameters:
       - Api_NasConfig
     Expanded: true
   - Label:
-      Zh-cn: Plugin Nas 存储配置
-      En: Plugin Nas 存储配置
+      Zh-cn: Plugin NAS 存储配置
+      En: Plugin NAS 存储配置
     Parameters:
       - Plugin_NasConfig
     Expanded: true
