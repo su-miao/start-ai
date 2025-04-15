@@ -16,5 +16,13 @@ SceneProfiles:
     Spec: "templates/cicd.spec.yml"
     Template: "templates/cicd.yml"
     FormTemplate: "templates/form.yml"
+FormParameters:
+  HEADER: "templates/formCompose/header.spec.yml"
+  DB: "templates/formCompose/db.spec.yml"
+  API_NAS: "templates/formCompose/api_nas.spec.yml"
+  PGVECTOR: "templates/formCompose/pgvector.spec.yml"
+  REDIS: "templates/formCompose/redis.spec.yml"
+  PLUGIN_NAS: "templates/formCompose/plugin_nas.spec.yml"
+
 
 
