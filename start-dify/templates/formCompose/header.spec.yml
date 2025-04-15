@@ -16,7 +16,7 @@ CompProps:
         SECURITY_GROUP_ID:
           Span: 5
           Offset: 1
-  OnChange: "{{onFormChange}}"
+    OnChange: "{{onFormChange}}"
 Parameters:
   NAMESPACE:
     Type: string
