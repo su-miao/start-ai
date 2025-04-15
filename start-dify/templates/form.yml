@@ -73,7 +73,12 @@ Parameters:
       Hideform:
         - verify
       CoverSource:
-        - label: "数据库地址"
+        - label: 数据库名称
+          key: database
+          required: true
+          requiredMessage: 请输入数据库名称
+          defaultValue: dify
+        - label: 数据库地址
           key: host
           required: true
           requiredMessage: 请输入数据库地址
