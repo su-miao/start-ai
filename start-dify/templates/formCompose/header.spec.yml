@@ -1,5 +1,5 @@
 Envs:
-  RegionId: "{{RegionId}}"
+  RegionId: "{{region}}"
   AccountId: "{{AccountId}}"
 CompProps:
   FormProps:
