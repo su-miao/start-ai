@@ -7,7 +7,7 @@ Parameters:
       Zh-cn: 选择 API NAS 文件系统
       En: 选择 API NAS 文件系统
     LabelMountTarget:
-      Zh-cn: 选择挂载点
+      Zh-cn: 选择挂载点 
       En: 选择挂载点
     Required: true
     Component: Component::NAS::MountTarget
