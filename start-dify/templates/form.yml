@@ -28,6 +28,7 @@ Parameters:
       Zh-cn: 交换机
       En: VSwitchID
     Component: 'Component::VPC::VSwitches'
+    Required: true
     ComponentProps:
       VpcId: "{{vpcId}}"
       SelectProps:
@@ -42,6 +43,7 @@ Parameters:
       Zh-cn: 选择安全组
       En: Security Group
     Component: 'Component::ECS::SecurityGroup'
+    Required: true
     ComponentProps:
       VpcId: "{{vpcId}}"
       SelectProps:
@@ -96,6 +98,7 @@ Parameters:
       Zh-cn: 插件数据库名称
       En: 插件数据库名称
     Component: Input
+    Required: true
     ComponentProps:
       DefaultValue: dify_plugin
   RedisConfig:
