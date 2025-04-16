@@ -13,10 +13,9 @@ SceneProfiles:
     DeployType: SaeFlow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
-    Spec: "templates/cicd.spec.yml"
     Template: "templates/cicd.yml"
     FormTemplate: "templates/form.yml"
-    FormConfig: 
+    Spec: 
       HEADER: "templates/formCompose/header.spec.yml"
       DB: "templates/formCompose/db.spec.yml"
       API_NAS: "templates/formCompose/api_nas.spec.yml"
