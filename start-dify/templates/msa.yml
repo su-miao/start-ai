@@ -19,16 +19,16 @@ Composer:
     GroupItem:
       - name: Postgres
         key: DB
-        type: dinamicForm
+        type: dynamicForm
       - name: API NAS
         key: API_NAS
-        type: dinamicForm
+        type: dynamicForm
       - name: AnalyticDB
         key: PGVECTOR
-        type: dinamicForm
+        type: dynamicForm
       - name: Redis
         key: REDIS
-        type: dinamicForm
+        type: dynamicForm
       - name: Plugin NAS
         key: PLUGIN_NAS
-        type: dinamicForm
+        type: dynamicForm
