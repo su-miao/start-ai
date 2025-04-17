@@ -1,0 +1,34 @@
+Composer:
+  SaePodGroup:
+    Component: sae_pod_group
+    Layout: saePod
+    GroupItem:
+      - name: dify-nginx
+        key: nginx
+      - name: dify-web
+        key: web
+      - name: dify-pod
+        key: pod
+      - name: dify-api
+        key: api
+      - name: dify-worker
+        key: worker
+  DBNodeGroup:
+    Component: db_group
+    Layout: horizontal
+    GroupItem:
+      - name: Postgres
+        key: DB
+        type: dinamicForm
+      - name: API NAS
+        key: API_NAS
+        type: dinamicForm
+      - name: AnalyticDB
+        key: PGVECTOR
+        type: dinamicForm
+      - name: Redis
+        key: REDIS
+        type: dinamicForm
+      - name: Plugin NAS
+        key: PLUGIN_NAS
+        type: dinamicForm
