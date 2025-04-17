@@ -1,5 +1,5 @@
 Envs:
-  RegionId: {{RegionId}}
+  RegionId: {{region}}
 Parameters:
   Plugin_NasConfig:
     Type: json

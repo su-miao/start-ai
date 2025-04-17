@@ -1,5 +1,5 @@
 Envs:
-  RegionId: {{RegionId}}
+  RegionId: {{region}}
 Parameters:
   RedisConfig:
     Type: json
