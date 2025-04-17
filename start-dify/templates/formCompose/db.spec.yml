@@ -3,20 +3,32 @@ Envs:
 Parameters:
   DbConfig:
     Type: json
-    Label: 
-      Zh-cn: Db 数据库配置
-      En: Db Database Config
+    Label:
+      Zh-cn: Postgres 数据库配置
+      En: Postgres 数据库配置
+      Link: 'https://rdsnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云数据库RDS
     Required: true
-    Component: Component::DB::Redis
+    Component: 'Component::DB::Redis'
     ComponentProps:
       Hideform:
         - verify
       CoverSource:
+        - label: 数据库名称
+          key: database
+          required: true
+          requiredMessage: 请输入数据库名称
+          defaultValue: dify
+        - label: 数据库地址
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
         - label: 端口
           key: port
           required: true
           requiredMessage: 请输入端口
           type: NumberPicker
-          defaultValue: 5432
+          defaultValue: '5432'
           componentProps:
             disabled: true

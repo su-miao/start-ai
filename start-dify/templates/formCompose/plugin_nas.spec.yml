@@ -3,20 +3,20 @@ Envs:
 Parameters:
   Plugin_NasConfig:
     Type: json
-    Label: 
+    Label:
       Zh-cn: 选择 Plugin NAS 文件系统
-      En: 选择 Plugin NAS 文件系统s
+      En: 选择 Plugin NAS 文件系统
     LabelMountTarget:
       Zh-cn: 选择挂载点
       En: 选择挂载点
     Required: true
-    Component: Component::NAS::MountTarget
+    Component: 'Component::NAS::MountTarget'
     ComponentProps:
-      VpcId:
-        {{VpcId}}
-      NasId:
-        hasClear: true
-        showRefresh: true
-        showExternalLink: true
-        externalLabel: 创建 NAS 文件系统
-        externalLink: https://nas.console.aliyun.com/nas/region/cn-shenzhen/fileSystems
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        NasId:
+          hasClear: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'

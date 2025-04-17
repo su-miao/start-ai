@@ -3,21 +3,28 @@ Envs:
 Parameters:
   RedisConfig:
     Type: json
-    Label: 
+    Label:
       Zh-cn: Redis数据库
-      En: Redis Database Config
+      En: Redis数据库
+      Link: 'https://kvstore.console.aliyun.com/Redis'
+      LinkLabel:
+        Zh-cn: 云数据库 Tair
     Required: true
-    Component: Component::DB::Redis
+    Component: 'Component::DB::Redis'
     ComponentProps:
       Hideform:
         - verify
         - database
       CoverSource:
+        - label: "Redis 连接地址"
+          key: host
+          required: true
+          requiredMessage: 请输入 Redis 连接地址
         - label: 端口
           key: port
           required: true
           requiredMessage: 请输入端口
           type: NumberPicker
-          defaultValue: 6379
+          defaultValue: '6379'
           componentProps:
             disabled: true
