@@ -17,6 +17,7 @@ CompProps:
           Span: 5
           Offset: 1
     OnChange: "{{onFormChange}}"
+    Value: "{{formValue}}"
 Parameters:
   NAMESPACE:
     Type: string

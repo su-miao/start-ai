@@ -1,5 +1,9 @@
 Envs:
   RegionId: "{{region}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Value: "{{formValue}}"
 Parameters:
   Plugin_NasConfig:
     Type: json
