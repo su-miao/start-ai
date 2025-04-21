@@ -6,15 +6,18 @@ CompProps:
     GridProps:
       Col:
         NAMESPACE:
-          Span: 6
+          Span: 4
         VPC_ID:
-          Span: 5
+          Span: 3
           Offset: 1
         VSWITCH_LIST:
-          Span: 5
+          Span: 3
           Offset: 1
         SECURITY_GROUP_ID:
-          Span: 5
+          Span: 3
+          Offset: 1
+        SECRET_KEY:
+          Span: 3
           Offset: 1
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
@@ -70,3 +73,12 @@ Parameters:
         ShowExternalLink: false
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
+  SECRET_KEY:
+    Type: String
+    Label:
+      Zh-cn: Secret Key
+      En: Secret Key
+    Required: true
+    Component: Password
+    ComponentProps:
+      Placeholder: 请输入Secret Key
