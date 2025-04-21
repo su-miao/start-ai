@@ -36,7 +36,7 @@ Parameters:
           defaultValue: '5432'
           componentProps:
             disabled: true
-   DB_PLUGIN_DATABASE_NAME:
+  DB_PLUGIN_DATABASE_NAME:
     Type: string
     Label:
       Zh-cn: 插件数据库名称
