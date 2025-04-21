@@ -3,7 +3,7 @@ Envs:
 CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
-    Value: "{{formValue}}"
+    Values: "{{formValue}}"
 Parameters:
   DbConfig:
     Type: json
@@ -36,3 +36,12 @@ Parameters:
           defaultValue: '5432'
           componentProps:
             disabled: true
+   DB_PLUGIN_DATABASE_NAME:
+    Type: string
+    Label:
+      Zh-cn: 插件数据库名称
+      En: 插件数据库名称
+    Component: Input
+    Required: true
+    ComponentProps:
+      DefaultValue: dify_plugin

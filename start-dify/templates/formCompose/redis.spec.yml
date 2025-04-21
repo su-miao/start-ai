@@ -3,7 +3,7 @@ Envs:
 CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
-    Value: "{{formValue}}"
+    Values: "{{formValue}}"
 Parameters:
   RedisConfig:
     Type: json

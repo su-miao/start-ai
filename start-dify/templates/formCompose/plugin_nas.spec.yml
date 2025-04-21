@@ -3,7 +3,7 @@ Envs:
 CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
-    Value: "{{formValue}}"
+    Values: "{{formValue}}"
 Parameters:
   Plugin_NasConfig:
     Type: json
