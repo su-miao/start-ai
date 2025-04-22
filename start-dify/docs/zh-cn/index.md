@@ -17,23 +17,27 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01yaK9m41XcP47AjClo_!!6000000002944-0-tps-2240-1056.jpg)
 
-2. 应用部署依赖阿里云 RDS 数据库地址，可以在 [阿里云 RDS 控制台](https://rds.console.aliyun.com/) 获取
+2. Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 `openssl rand -hex 16` 生成一个密钥，再在前缀添加 `sk-`，例如: `sk-2d32e986bb9648a0c3655e85a2e8491b`
+
+![](https://img.alicdn.com/imgextra/i4/O1CN01twtwZV2AAFjqQaGIG_!!6000000008162-2-tps-317-97.png)
+
+3. 应用部署依赖阿里云 RDS 数据库地址，可以在 [阿里云 RDS 控制台](https://rds.console.aliyun.com/) 获取
 
 ![](https://img.alicdn.com/imgextra/i2/O1CN011A7s571V3Td98gDAY_!!6000000002597-0-tps-1673-1024.jpg)
 
-3. 应用部署依赖阿里云 Tair 数据库地址，可以在 [阿里云 Tair 控制台](https://kvstore.console.aliyun.com) 获取
+4. 应用部署依赖阿里云 Tair 数据库地址，可以在 [阿里云 Tair 控制台](https://kvstore.console.aliyun.com) 获取
 
 ![](https://img.alicdn.com/imgextra/i3/O1CN01bzHFKR1LaJsFihDGv_!!6000000001315-0-tps-2028-764.jpg)
 
-4. 应用部署依赖阿里云 AnalyticDB 数据库地址，可以在 [阿里云 AnalyticDB 控制台](https://gpdbnext.console.aliyun.com/gpdb/) 获取
+5. 应用部署依赖阿里云 AnalyticDB 数据库地址，可以在 [阿里云 AnalyticDB 控制台](https://gpdbnext.console.aliyun.com/gpdb/) 获取
 
 ![](https://img.alicdn.com/imgextra/i3/O1CN01OdeWyS1z184UNyLIc_!!6000000006653-0-tps-1772-685.jpg)
 
-5. 部署成功后，在「Service 公网访问发布」的任务步骤中，可以获取到 Dify 应用的访问 IP
+6. 部署成功后，在「Service 公网访问发布」的任务步骤中，可以获取到 Dify 应用的访问 IP
 
 ![](https://img.alicdn.com/imgextra/i4/O1CN0184foXI1EukE7nEZpA_!!6000000000412-0-tps-1024-750.jpg)
 
-6. 同时，可以在已部署场景中，跳转查看目标 Dify 应用，进入 dify-nginx 应用获取公网访问地址
+7. 同时，可以在已部署场景中，跳转查看目标 Dify 应用，进入 dify-nginx 应用获取公网访问地址
 
 ![](https://img.alicdn.com/imgextra/i2/O1CN01QzWddM1izj0Swzff7_!!6000000004484-0-tps-2096-682.jpg)
 
@@ -56,5 +60,19 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 
 ![](https://img.alicdn.com/imgextra/i4/O1CN01j2v0jk1Rcxr5tTg1Z_!!6000000002133-0-tps-1139-1142.jpg)
 
+# 注意事项
+1. Redis 版本当前只支持支持 Redis 5.0 以及 Redis 6.0，不支持 Redis 7.0
+![](https://img.alicdn.com/imgextra/i2/O1CN01PyFARy1iRphUsDXhp_!!6000000004410-2-tps-712-486.png)
+
+2. Redis 密码中不支持包含 @ 以及 # 符号
+<br />
+![](https://img.alicdn.com/imgextra/i4/O1CN01rxMDPX1pnXmmESFP5_!!6000000005405-2-tps-624-206.png)
+
+3. RDS 需要创建账号类型为 高权限账号 的账号
+![](https://img.alicdn.com/imgextra/i2/O1CN01p5kZFm1kGV8FJcJ2F_!!6000000004656-2-tps-741-587.png)
+
+4. RDS 数据库需要先提前创建好 dify 数据库，并授权给之前创建的 高权限账号
+![](https://img.alicdn.com/imgextra/i1/O1CN01ILCKQC1Z1QJvuzoFa_!!6000000003134-2-tps-718-624.png)
+解释
 
 
