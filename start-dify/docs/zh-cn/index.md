@@ -17,7 +17,7 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01yaK9m41XcP47AjClo_!!6000000002944-0-tps-2240-1056.jpg)
 
-2. Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 `openssl rand -hex 16` 生成一个密钥，再在前缀添加 `sk-`，例如: `sk-2d32e986bb9648a0c3655e85a2e8491b`
+2. Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 'openssl rand -hex 16' 生成一个密钥，再在前缀添加 'sk-'  ，例如: 'sk-2d32e986bb9648a0c3655e85a2e8491b'
 
 ![](https://img.alicdn.com/imgextra/i4/O1CN01twtwZV2AAFjqQaGIG_!!6000000008162-2-tps-317-97.png)
 
@@ -62,16 +62,19 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 
 # 注意事项
 1. Redis 版本当前只支持支持 Redis 5.0 以及 Redis 6.0，不支持 Redis 7.0
+
 ![](https://img.alicdn.com/imgextra/i2/O1CN01PyFARy1iRphUsDXhp_!!6000000004410-2-tps-712-486.png)
 
 2. Redis 密码中不支持包含 @ 以及 # 符号
-<br />
+
 ![](https://img.alicdn.com/imgextra/i4/O1CN01rxMDPX1pnXmmESFP5_!!6000000005405-2-tps-624-206.png)
 
 3. RDS 需要创建账号类型为 高权限账号 的账号
+
 ![](https://img.alicdn.com/imgextra/i2/O1CN01p5kZFm1kGV8FJcJ2F_!!6000000004656-2-tps-741-587.png)
 
 4. RDS 数据库需要先提前创建好 dify 数据库，并授权给之前创建的 高权限账号
+
 ![](https://img.alicdn.com/imgextra/i1/O1CN01ILCKQC1Z1QJvuzoFa_!!6000000003134-2-tps-718-624.png)
 解释
 
