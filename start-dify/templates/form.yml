@@ -57,6 +57,7 @@ Parameters:
     Label:
       Zh-cn: Secret Key
       En: Secret Key
+    LabelTip: "Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 'openssl rand -hex 16' 生成一个密钥，再在前缀添加 'sk-' ，例如: 'sk-2d32e986bb9648a0c3655e85a2e8491b'"
     Required: true
     Component: Password
     ComponentProps:
@@ -128,6 +129,13 @@ Parameters:
           defaultValue: '6379'
           componentProps:
             disabled: true
+        - label: 密码
+          key: password
+          type: Password
+          required: true
+          requiredMessage: 请输入密码
+          allowedPattern: '^[^@#]+$'
+          allowedPatternMessage: '密码中不能包含@和#'
   PgVectorConfig:
     Type: json
     Label:
