@@ -188,6 +188,8 @@ Parameters:
           showExternalLink: true
           externalLabel: 创建NAS文件系统
           externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onApiNasIdChange}}"
+      Validator: "{{validatorApiNasId}}"
   Plugin_NasConfig:
     Type: json
     Label:
@@ -207,6 +209,8 @@ Parameters:
           showExternalLink: true
           externalLabel: 创建NAS文件系统
           externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onPluginNasIdChange}}"
+      Validator: "{{validatorPluginNasId}}"
 MetaData:
   - Label:
       Zh-cn: 基础配置
