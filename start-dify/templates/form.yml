@@ -129,7 +129,13 @@ Parameters:
           defaultValue: '6379'
           componentProps:
             disabled: true
+        - label: 用户名
+          labelTip: 请输入默认账号类型的用户名
+          key: username
+          required: true
+          requiredMessage: 请输入用户名
         - label: 密码
+          labelTip: 请输入默认账号类型的密码
           key: password
           type: Password
           required: true
