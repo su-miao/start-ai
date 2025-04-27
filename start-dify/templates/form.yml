@@ -8,6 +8,7 @@ Parameters:
       Zh-cn: 命名空间
       En: Namespace
     Required: true
+    RequiredMessage: 请选择命名空间
     Component: 'Component::SAE::Namespace'
     ComponentProps:
       HasClear: true
@@ -29,6 +30,7 @@ Parameters:
       En: VSwitchID
     Component: 'Component::VPC::VSwitches'
     Required: true
+    RequiredMessage: 请选择交换机
     ComponentProps:
       VpcId: "{{vpcId}}"
       SelectProps:
@@ -44,6 +46,7 @@ Parameters:
       En: Security Group
     Component: 'Component::ECS::SecurityGroup'
     Required: true
+    RequiredMessage: 请选择安全组
     ComponentProps:
       VpcId: "{{vpcId}}"
       SelectProps:
@@ -59,6 +62,7 @@ Parameters:
       En: Secret Key
     LabelTip: "Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 'openssl rand -hex 16' 生成一个密钥，再在前缀添加 'sk-' ，例如: 'sk-2d32e986bb9648a0c3655e85a2e8491b'"
     Required: true
+    RequiredMessage: 请输入 Secret Key
     Component: Password
     ComponentProps:
       Placeholder: 请输入Secret Key
@@ -100,6 +104,7 @@ Parameters:
       En: 插件数据库名称
     Component: Input
     Required: true
+    RequiredMessage: 请输入插件数据库名称
     ComponentProps:
       DefaultValue: dify_plugin
   RedisConfig:
