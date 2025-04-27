@@ -8,7 +8,7 @@ CompProps:
         NAMESPACE:
           Span: 5
         VPC_ID:
-          Span: 3
+          Span: 4
         VSWITCH_LIST:
           Span: 4
         SECURITY_GROUP_ID:
