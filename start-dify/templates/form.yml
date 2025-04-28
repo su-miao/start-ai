@@ -12,6 +12,7 @@ Parameters:
     Component: 'Component::SAE::Namespace'
     ComponentProps:
       HasClear: true
+      ShowSearch: true
       ShowRefresh: true
       Value: "{{namespaceId}}"
       OnChange: "{{onNamespaceChange}}"
@@ -35,6 +36,7 @@ Parameters:
       VpcId: "{{vpcId}}"
       SelectProps:
         HasClear: true
+        ShowSearch: true
         ShowRefresh: true
         ShowExternalLink: true
         ExternalLabel: 创建交换机
@@ -51,6 +53,7 @@ Parameters:
       VpcId: "{{vpcId}}"
       SelectProps:
         HasClear: true
+        ShowSearch: true
         ShowRefresh: true
         ShowExternalLink: true
         ExternalLabel: 创建安全组
@@ -189,6 +192,7 @@ Parameters:
       SelectProps:
         NasId:
           hasClear: true
+          showSearch: true
           showRefresh: true
           showExternalLink: true
           externalLabel: 创建NAS文件系统
@@ -210,6 +214,7 @@ Parameters:
       SelectProps:
         NasId:
           hasClear: true
+          showSearch: true
           showRefresh: true
           showExternalLink: true
           externalLabel: 创建NAS文件系统
