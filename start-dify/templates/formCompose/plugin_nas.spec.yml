@@ -24,3 +24,5 @@ Parameters:
           showExternalLink: true
           externalLabel: 创建NAS文件系统
           externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onPluginNasConfigChange}}"
+      Validator: "{{validatorPluginNasConfig}}"
