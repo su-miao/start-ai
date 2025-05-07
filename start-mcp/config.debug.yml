@@ -4,8 +4,10 @@ Parameters:
 SceneMetadata:
   Name:
     zh-cn: "MCP Server"
+    en: "MCP Server"
   Description:
     zh-cn: "MCP Server 官方示例，基于 SSE 协议"
+    en: "MCP Server 官方示例，基于 SSE 协议"
   Logo: "resources/icons/scence_logo.png"
 SceneProfiles:
   - DisplayName:

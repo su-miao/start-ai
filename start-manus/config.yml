@@ -4,8 +4,10 @@ Parameters:
 SceneMetadata:
   Name:
     zh-cn: "Open Manus"
+    en: "Open Manus"
   Description:
     zh-cn: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能。（该模板镜像较大，约12G，实例启动大约12分钟） "
+    en: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能。（该模板镜像较大，约12G，实例启动大约12分钟） "
   Logo: "resources/icons/scence_logo.png"
 SceneProfiles:
   - DisplayName:
@@ -16,5 +18,9 @@ SceneProfiles:
     Spec: "templates/cicd.spec.yml"
     Template: "templates/cicd.yml"
     FormTemplate: "templates/form.yml"
+    FlowTemplate: "templates/msa.yml"
+    Spec:
+      HEADER: "templates/formCompose/header.spec.yml"
+      MANUS: "templates/formCompose/manus.spec.yml"
 
 
