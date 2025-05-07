@@ -15,7 +15,6 @@ SceneProfiles:
     DeployType: SaeFlow
     Documentation:
       zh-cn: "docs/zh-cn/index.md"
-    Spec: "templates/cicd.spec.yml"
     Template: "templates/cicd.yml"
     FormTemplate: "templates/form.yml"
     FlowTemplate: "templates/msa.yml"

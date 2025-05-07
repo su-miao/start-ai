@@ -1,0 +1,71 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+CompProps:
+  FormProps:
+    GridProps:
+      Col:
+        NAMESPACE:
+          Span: 5
+        VPC_ID:
+          Span: 4
+        VSWITCH_LIST:
+          Span: 4
+        SECURITY_GROUP_ID:
+          Span: 5
+        SECRET_KEY:
+          Span: 3
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: Namespace
+    Required: true
+    Component: 'Component::SAE::Namespace'
+    ComponentProps:
+      HasClear: true
+      ShowRefresh: true
+      Value: "{{namespaceId}}"
+      OnChange: "{{onNamespaceChange}}"
+  VPC_ID:
+    Type: string
+    Label:
+      Zh-cn: Vpc ID
+      En: Vpc ID
+    Component: Text
+    ComponentProps:
+      Value: "{{vpcId}}"
+  VSWITCH_LIST:
+    Type: string
+    Label:
+      Zh-cn: 交换机
+      En: VSwitchID
+    Component: 'Component::VPC::VSwitches'
+    Required: true
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建交换机
+        ExternalLink: "https://vpc.console.aliyun.com/vpc/{{region}}/switches"
+  SECURITY_GROUP_ID:
+    Type: string
+    Label:
+      Zh-cn: 选择安全组
+      En: Security Group
+    Component: 'Component::ECS::SecurityGroup'
+    Required: true
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建安全组
+        ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'
+ 
