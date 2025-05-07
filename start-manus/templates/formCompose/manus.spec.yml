@@ -3,18 +3,6 @@ Envs:
   AccountId: "{{AccountId}}"
 CompProps:
   FormProps:
-    GridProps:
-      Col:
-        NAMESPACE:
-          Span: 5
-        VPC_ID:
-          Span: 4
-        VSWITCH_LIST:
-          Span: 4
-        SECURITY_GROUP_ID:
-          Span: 5
-        SECRET_KEY:
-          Span: 3
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
 Parameters:
