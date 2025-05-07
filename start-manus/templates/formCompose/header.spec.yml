@@ -6,15 +6,13 @@ CompProps:
     GridProps:
       Col:
         NAMESPACE:
-          Span: 5
+          Span: 6
         VPC_ID:
-          Span: 4
+          Span: 5
         VSWITCH_LIST:
-          Span: 4
+          Span: 5
         SECURITY_GROUP_ID:
           Span: 5
-        SECRET_KEY:
-          Span: 3
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
 Parameters:
