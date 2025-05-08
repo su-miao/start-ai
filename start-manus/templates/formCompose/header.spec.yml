@@ -31,7 +31,7 @@ Parameters:
   VPC_ID:
     Type: string
     Label:
-`      Zh-cn: Vpc
+      Zh-cn: Vpc
       En: VpcID
     Component: Text
     Required: true
