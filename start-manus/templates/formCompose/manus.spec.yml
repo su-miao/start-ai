@@ -13,6 +13,7 @@ Parameters:
       En: 大模型名称
     Required: true
     Component: Input
+    RequiredMessage: 请输入大模型名称
   API_KEY:
     Type: String
     Label:
@@ -20,6 +21,7 @@ Parameters:
       En: API Key
     Required: true
     Component: Password
+    RequiredMessage: 请输入API Key
     ComponentProps:
       Placeholder: "请输入API Key"
   BASE_URL:
@@ -28,4 +30,5 @@ Parameters:
       Zh-cn: Endpoint
       En: Endpoint
     Required: true
+    RequiredMessage: 请输入 Endpoint
     Component: Input
