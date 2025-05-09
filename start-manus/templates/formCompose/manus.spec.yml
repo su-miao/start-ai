@@ -25,6 +25,7 @@ Parameters:
     RequiredMessage: 请输入API Key
     ComponentProps:
       Placeholder: "请输入API Key"
+      Disabled: "{{formDisabled}}"
   BASE_URL:
     Type: String
     Label:
