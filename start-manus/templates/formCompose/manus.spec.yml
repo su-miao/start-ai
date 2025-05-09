@@ -5,6 +5,7 @@ CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
 Parameters:
   MODEL:
     Type: String
