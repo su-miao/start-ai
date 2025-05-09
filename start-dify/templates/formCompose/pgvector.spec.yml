@@ -4,6 +4,7 @@ CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
 Parameters:
   PgVectorConfig:
     Type: json
