@@ -56,6 +56,7 @@ Parameters:
         ExternalLabel: 创建交换机
         ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
         Disabled: "{{formDisabled}}"
+        Mode: multiple
   SECURITY_GROUP_ID:
     Type: string
     Label:
