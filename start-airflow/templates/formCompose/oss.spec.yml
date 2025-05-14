@@ -1,0 +1,16 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+Parameters:
+  OssAkId:
+    Type: String
+    Label:
+      Zh-cn: AccessKey ID
+      En: AccessKey ID
+    Required: true
+    Component: Input
+    RequiredMessage: 请输入AccessKey ID

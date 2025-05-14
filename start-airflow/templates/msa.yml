@@ -1,0 +1,19 @@
+Composer:
+  SaePodGroup:
+    Component: sae_pod_group
+    Layout: horizontal
+    GroupItem:
+      - name: sae-airflow-scheduler
+        key: scheduler
+      - name: sae-airflow-webserver
+        key: webserver
+  DBNodeGroup:
+    Component: db_group
+    Layout: horizontal
+    GroupItem:
+      - name: MySQL
+        key: MYSQL
+        type: dynamicForm
+      - name: OSS
+        key: OSS
+        type: dynamicForm

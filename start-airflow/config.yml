@@ -1,0 +1,26 @@
+Parameters:
+  Region: "cn-hangzhou"
+  Name: "start-airflow"
+SceneMetadata:
+  Name:
+    zh-cn: "Airflow"
+    en: "Airflow"
+  Description:
+    zh-cn: "Airflow是一个开源工作流调度平台，用于编排和管理数据管道。"
+    en: " Airflow是一个开源工作流调度平台，用于编排和管理数据管道。"
+  Logo: "resources/icons/scence_logo.png"
+SceneProfiles:
+  - DisplayName:
+      zh-cn: Airflow
+    DeployType: SaeFlow
+    Documentation:
+      zh-cn: "docs/zh-cn/index.md"
+    Template: "templates/cicd.yml"
+    FormTemplate: "templates/form.yml"
+    FlowTemplate: "templates/msa.yml"
+    Spec:
+      HEADER: "templates/formCompose/header.spec.yml"
+      MYSQL: "templates/formCompose/mysql.spec.yml"
+      OSS: "templates/formCompose/oss.spec.yml"
+
+
