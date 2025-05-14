@@ -5,6 +5,7 @@ CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
 Parameters:
   OssAkId:
     Type: String
@@ -25,8 +26,8 @@ Parameters:
   BucketName:
     Type: String
     Label:
-      Zh-cn: AccessKey Secret
-      En: AccessKey Secret
+      Zh-cn: Bucket
+      En: Bucket
     Required: true
     Component: Input
   BucketPath:
