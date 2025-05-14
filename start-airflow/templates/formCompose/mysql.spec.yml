@@ -4,15 +4,16 @@ CompProps:
   FormProps:
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
 Parameters:
   MySQLConfig:
     Type: json
     Label:
       Zh-cn: MySQL 数据库配置
       En: MySQL 数据库配置
-      Link: 'https://rdsnext.console.aliyun.com/'
-      LinkLabel:
-        Zh-cn: 云数据库RDS
+      # Link: 'https://rdsnext.console.aliyun.com/'
+      # LinkLabel:
+      #   Zh-cn: 云数据库RDS
     Required: true
     Component: 'Component::DB::Redis'
     ComponentProps:
@@ -23,7 +24,6 @@ Parameters:
           key: database
           required: true
           requiredMessage: 请输入数据库名称
-          defaultValue: dify
         - label: 数据库地址
           key: host
           required: true
@@ -33,5 +33,4 @@ Parameters:
           required: true
           requiredMessage: 请输入端口
           type: NumberPicker
-          componentProps:
-            disabled: true
+          defaultValue: ''

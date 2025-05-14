@@ -30,6 +30,7 @@ Parameters:
       ShowRefresh: true
       Value: "{{namespaceId}}"
       OnChange: "{{onNamespaceChange}}"
+      Disabled: "{{formDisabled}}"
   VPC_ID:
     Type: string
     Label:
@@ -54,6 +55,8 @@ Parameters:
         ShowExternalLink: false
         ExternalLabel: 创建交换机
         ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
+        Disabled: "{{formDisabled}}"
+        Mode: multiple
   SECURITY_GROUP_ID:
     Type: string
     Label:
@@ -69,3 +72,4 @@ Parameters:
         ShowExternalLink: false
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
+        Disabled: "{{formDisabled}}"
