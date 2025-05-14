@@ -4,15 +4,17 @@ Envs:
 CompProps:
   FormProps:
     GridProps:
+      Row:
+        Gutter: 20
       Col:
         NAMESPACE:
           Span: 6
         VPC_ID:
-          Span: 5
+          Span: 6
         VSWITCH_LIST:
-          Span: 5
+          Span: 6
         SECURITY_GROUP_ID:
-          Span: 5
+          Span: 6
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
 Parameters:

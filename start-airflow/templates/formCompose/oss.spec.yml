@@ -14,3 +14,34 @@ Parameters:
     Required: true
     Component: Input
     RequiredMessage: 请输入AccessKey ID
+  OssAkSecret:
+    Type: String
+    Label:
+      Zh-cn: AccessKey Secret
+      En: AccessKey Secret
+    Required: true
+    Component: Input
+    RequiredMessage: 请输入AccessKey Secret
+  BucketName:
+    Type: String
+    Label:
+      Zh-cn: AccessKey Secret
+      En: AccessKey Secret
+    Required: true
+    Component: Input
+  BucketPath:
+    Type: String
+    Label:
+      Zh-cn: 挂载路径
+      En: 挂载路径
+    Required: true
+    Component: Input
+    RequiredMessage: 请输入挂载路径
+  MountPath:
+    Type: String
+    Label:
+      Zh-cn: 容器路径
+      En: 容器路径
+    Required: true
+    Component: Input
+    RequiredMessage: 请输入容器路径

@@ -33,6 +33,5 @@ Parameters:
           required: true
           requiredMessage: 请输入端口
           type: NumberPicker
-          defaultValue: '5432'
           componentProps:
             disabled: true
