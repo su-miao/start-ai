@@ -24,7 +24,9 @@ stages:
             name: Kubectl SAE 发布
             step: FlowKubectlSae
             with:
-              variables: []
+              variables: 
+                - key: DB_CONNECTION
+                  value: '{{DB_CONNECTION}}'
               namespace: '{{NAMESPACE}}'
               region: '{{REGION_ID}}'
               serviceConnection: s1xot4gpx5u31n53
