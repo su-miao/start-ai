@@ -13,7 +13,7 @@ stages:
     name: 新阶段
     jobs:
       job_0:
-        name: Secret 发布
+        name: Secret 数据库连接
         runsOn:
           group: public/cn-beijing
           labels: 'linux,amd64'
@@ -22,14 +22,18 @@ stages:
         steps:
           step_0:
             name: Kubectl SAE 发布
-            step: FlowKubectlSae
+            step: private/KubectlSae
             with:
-              variables: 
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
                 - key: DB_CONNECTION
                   value: '{{DB_CONNECTION}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               namespace: '{{NAMESPACE}}'
               region: '{{REGION_ID}}'
-              serviceConnection: s1xot4gpx5u31n53
               yamlPath: manifests/secret.yaml
         driven: auto
         plugins: []
@@ -55,8 +59,10 @@ stages:
                   value: '{{REGION_ID}}'
                 - key: ACCOUNT_ID
                   value: '{{ACCOUNT_ID}}'
+                - key: AIRFLOW_NAMESPACE
+                  value: '${AIRFLOW_NAMESPACE}'
                 - key: OSS-MOUNT
-                  value: '{{OSS_MOUNT}}'
+                  value: '{{OSS-MOUNT}}'
                 - key: VPC_ID
                   value: '{{VPC_ID}}'
                 - key: SECURITY_GROUP_ID
@@ -65,6 +71,7 @@ stages:
                   value: '{{VSWITCH_LIST}}'
               secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               namespace: '{{NAMESPACE}}'
               region: '{{REGION_ID}}'
               yamlPath: manifests/deployment.yaml
@@ -158,6 +165,7 @@ stages:
                   value: '{{NAMESPACE}}'
               secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               namespace: '{{NAMESPACE}}'
               region: '{{REGION_ID}}'
               yamlPath: manifests/service.yaml
