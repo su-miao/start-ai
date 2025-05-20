@@ -41,6 +41,8 @@ Parameters:
             required: true
             requiredMessage: 请选择Bucket
             type: Select
+            componentProps:
+              disabled: "{{formDisabled}}"
           - label: 挂载路径
             key: bucketPath
             required: true

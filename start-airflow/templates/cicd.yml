@@ -62,7 +62,7 @@ stages:
                 - key: AIRFLOW_NAMESPACE
                   value: '${AIRFLOW_NAMESPACE}'
                 - key: OSS-MOUNT
-                  value: '{{OSS-MOUNT}}'
+                  value: '{{OSS_MOUNT}}'
                 - key: VPC_ID
                   value: '{{VPC_ID}}'
                 - key: SECURITY_GROUP_ID
