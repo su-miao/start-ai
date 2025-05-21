@@ -57,18 +57,24 @@ stages:
                   value: '{{NAMESPACE}}'
                 - key: REGION_ID
                   value: '{{REGION_ID}}'
+                - key: PHYSICAL_REGION_ID
+                  value: '{{PHYSICAL_REGION_ID}}'
                 - key: ACCOUNT_ID
                   value: '{{ACCOUNT_ID}}'
                 - key: AIRFLOW_NAMESPACE
                   value: '${AIRFLOW_NAMESPACE}'
-                - key: OSS-MOUNT
-                  value: '{{OSS_MOUNT}}'
                 - key: VPC_ID
                   value: '{{VPC_ID}}'
                 - key: SECURITY_GROUP_ID
                   value: '{{SECURITY_GROUP_ID}}'
                 - key: VSWITCH_LIST
                   value: '{{VSWITCH_LIST}}'
+                - key: OSS_AK_ID
+                  value: '{{OSS_AK_ID}}'
+                - key: OSS_AK_SECRET
+                  value: '{{OSS_AK_SECRET}}'
+                - key: OSS_MOUNT_DESCS
+                  value: '{{OSS_MOUNT_DESCS}}'
               secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               stsToken: '${ALICLOUD_STS_TOKEN}'
@@ -93,7 +99,7 @@ stages:
 
                 RETRY_DELAY=5
 
-                DEPLOYMENTS=("sae-airflow-scheduler")
+                DEPLOYMENTS=("sae-airflow-scheduler" "sae-airflow-webserver")
 
 
                 command -v kubectl-sae >/dev/null 2>&1 || { 
