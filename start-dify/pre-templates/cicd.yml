@@ -82,7 +82,7 @@ stages:
                 - key: ANALYTICDB_NAMESPACE
                   value: '{{ANALYTICDB_NAMESPACE}}'
                 - key: ANALYTICDB_PASSWORD
-                  value: 'ANALYTICDB_PASSWORD'
+                  value: '{{ANALYTICDB_PASSWORD}}'
                 - key: CELERY_BROKER_URL
                   value: '{{CELERY_BROKER_URL}}'
                 - key: ANALYTICDB_NAMESPACE_PASSWORD

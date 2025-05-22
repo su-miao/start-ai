@@ -9,64 +9,64 @@ Parameters:
   AnalyticDBInstanceId:
     Type: String
     Label:
-      Zh-cn: analyticDB 实例ID
-      En: analyticDB 实例ID
+      Zh-cn: AnalyticDB 实例ID
+      En: AnalyticDB 实例ID
     Component: Input
     Required: true
-    RequiredMessage: 请输入analyticDB 实例ID
+    RequiredMessage: AnalyticDB 实例ID
   AnalyticDBRegionId:
     Type: String
     Label:
-      Zh-cn: analyticDB 实例地域
-      En: analyticDB 实例地域
+      Zh-cn: AnalyticDB 实例地域
+      En: AnalyticDB 实例地域
     Component: Input
     Required: true
-    RequiredMessage: 请输入analyticDB 实例地域
+    RequiredMessage: AnalyticDB 实例地域
   AnalyticDBAccount:
     Type: String
     Label:
-      Zh-cn: analyticDB 用户名
-      En: analyticDB 用户名
+      Zh-cn: AnalyticDB 用户名
+      En: AnalyticDB 用户名
     Component: Input
     Required: true
-    RequiredMessage: 请输入analyticDB 用户名
+    RequiredMessage: AnalyticDB 用户名
   AnalyticDBPassword:
     Type: String
     Label:
-      Zh-cn: analyticDB 账号密码
-      En: analyticDB 账号密码
+      Zh-cn: AnalyticDB 账号密码
+      En: AnalyticDB 账号密码
     Component: Input
     Required: true
-    RequiredMessage: 请输入 analyticDB 账号密码
+    RequiredMessage: 请输入 AnalyticDB 账号密码
   AnalyticDBNamespace:
     Type: String
     Label:
-      Zh-cn: analyticDB 命名空间
-      En: analyticDB 命名空间
+      Zh-cn: AnalyticDB 命名空间
+      En: AnalyticDB 命名空间
     Component: Input
     Required: true
     RequiredMessage: 请输入实例地域
   AnalyticDBNamespacePassword:
     Type: String
     Label:
-      Zh-cn: analyticDB 命名空间密码
-      En: analyticDB 命名空间密码
+      Zh-cn: AnalyticDB 命名空间密码
+      En: AnalyticDB 命名空间密码
     Component: Input
     Required: true
-    RequiredMessage: 请输入analyticDB 命名空间密码
+    RequiredMessage: AnalyticDB 命名空间密码
   AnalyticDBAkId:
     Type: String
     Label:
-      Zh-cn: 账号akId
-      En: 账号akId
+      Zh-cn: AccessKey ID
+      En: AccessKey ID
     Component: Password
     Required: true
-    RequiredMessage: 请输入账号akId
+    RequiredMessage: 请输入AccessKey ID
   AnalyticDBAkSecret:
     Type: String
     Label:
-      Zh-cn: 账号akSecret
-      En: 账号akSecret
+      Zh-cn: AccessKey Secret
+      En: AccessKey Secret
     Component: Password
     Required: true
-    RequiredMessage: 请输入账号akSecret
+    RequiredMessage: 请输入AccessKey Secret
