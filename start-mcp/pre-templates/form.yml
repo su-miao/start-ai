@@ -1,0 +1,52 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: Namespace
+    Required: true
+    Component: 'Component::SAE::Namespace'
+    ComponentProps:
+      HasClear: true
+      ShowRefresh: true
+      Value: "{{namespaceId}}"
+      OnChange: "{{onNamespaceChange}}"
+  VPC_ID:
+    Type: string
+    Label:
+      Zh-cn: Vpc
+      En: VpcID
+    Component: Text
+    ComponentProps:
+      Value: "{{vpcId}}"
+  VSWITCH_LIST:
+    Type: string
+    Label:
+      Zh-cn: 交换机
+      En: VSwitchID
+    Component: 'Component::VPC::VSwitches'
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建交换机
+        ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
+  SECURITY_GROUP_ID:
+    Type: string
+    Label:
+      Zh-cn: 选择安全组
+      En: Security Group
+    Component: 'Component::ECS::SecurityGroup'
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建安全组
+        ExternalLink: 'https://ecs.console.aliyun.com/{{region}}/vpc/securityGroup'

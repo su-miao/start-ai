@@ -22,5 +22,14 @@ SceneProfiles:
       HEADER: "templates/formCompose/header.spec.yml"
       MYSQL: "templates/formCompose/mysql.spec.yml"
       OSS: "templates/formCompose/oss.spec.yml"
+    PreDocumentation:
+      zh-cn: "pre-docs/zh-cn/pre-index.md"
+    PreTemplate: "pre-templates/cicd.yml"
+    PreFormTemplate: "pre-templates/form.yml"
+    PreFlowTemplate: "pre-templates/msa.yml"
+    PreSpec:
+      HEADER: "pre-templates/formCompose/header.spec.yml"
+      MYSQL: "pre-templates/formCompose/mysql.spec.yml"
+      OSS: "pre-templates/formCompose/oss.spec.yml"
 
 

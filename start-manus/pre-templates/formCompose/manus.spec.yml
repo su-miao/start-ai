@@ -1,0 +1,36 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  MODEL:
+    Type: String
+    Label:
+      Zh-cn: 大模型名称
+      En: 大模型名称
+    Required: true
+    Component: Input
+    RequiredMessage: 请输入大模型名称
+  API_KEY:
+    Type: String
+    Label:
+      Zh-cn: API Key
+      En: API Key
+    Required: true
+    Component: Password
+    RequiredMessage: 请输入API Key
+    ComponentProps:
+      Placeholder: "请输入API Key"
+      Disabled: "{{formDisabled}}"
+  BASE_URL:
+    Type: String
+    Label:
+      Zh-cn: Endpoint
+      En: Endpoint
+    Required: true
+    RequiredMessage: 请输入 Endpoint
+    Component: Input

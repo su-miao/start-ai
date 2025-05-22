@@ -1,0 +1,88 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+CompProps:
+  FormProps:
+    GridProps:
+      Row: 
+        Gutter: 20
+      Col:
+        NAMESPACE:
+          Span: 5
+        VPC_ID:
+          Span: 5
+        VSWITCH_LIST:
+          Span: 5
+        SECURITY_GROUP_ID:
+          Span: 5
+        SECRET_KEY:
+          Span: 4
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: Namespace
+    Required: true
+    Component: 'Component::SAE::Namespace'
+    ComponentProps:
+      HasClear: true
+      ShowRefresh: true
+      Value: "{{namespaceId}}"
+      OnChange: "{{onNamespaceChange}}"
+      Disabled: "{{formDisabled}}"
+  VPC_ID:
+    Type: string
+    Label:
+      Zh-cn: Vpc
+      En: VpcID
+    Component: Text
+    Required: true
+    ComponentProps:
+      Value: "{{vpcId}}"
+  VSWITCH_LIST:
+    Type: string
+    Label:
+      Zh-cn: 交换机
+      En: VSwitchID
+    Component: 'Component::VPC::VSwitches'
+    Required: true
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: false
+        ExternalLabel: 创建交换机
+        ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
+        Disabled: "{{formDisabled}}"
+        Mode: multiple
+  SECURITY_GROUP_ID:
+    Type: string
+    Label:
+      Zh-cn: 选择安全组
+      En: Security Group
+    Component: 'Component::ECS::SecurityGroup'
+    Required: true
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowRefresh: true
+        ShowExternalLink: false
+        ExternalLabel: 创建安全组
+        ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
+        Disabled: "{{formDisabled}}"
+  SECRET_KEY:
+    Type: String
+    Label:
+      Zh-cn: Secret Key
+      En: Secret Key
+    LabelTip: "Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 'openssl rand -hex 16' 生成一个密钥，再在前缀添加 'sk-' ，例如: 'sk-2d32e986bb9648a0c3655e85a2e8491b'"
+    Required: true
+    Component: Password
+    ComponentProps:
+      Placeholder: 请输入Secret Key
+      Disabled: "{{formDisabled}}"

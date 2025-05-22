@@ -1,0 +1,265 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+Parameters:
+  NAMESPACE:
+    Type: string
+    Label:
+      Zh-cn: 命名空间
+      En: Namespace
+    Required: true
+    RequiredMessage: 请选择命名空间
+    Component: 'Component::SAE::Namespace'
+    ComponentProps:
+      HasClear: true
+      ShowSearch: true
+      ShowRefresh: true
+      Value: "{{namespaceId}}"
+      OnChange: "{{onNamespaceChange}}"
+  VPC_ID:
+    Type: string
+    Label:
+      Zh-cn: Vpc
+      En: VpcID
+    Component: Text
+    ComponentProps:
+      Value: "{{vpcId}}"
+  VSWITCH_LIST:
+    Type: string
+    Label:
+      Zh-cn: 交换机
+      En: VSwitchID
+    Component: 'Component::VPC::VSwitches'
+    Required: true
+    RequiredMessage: 请选择交换机
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowSearch: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建交换机
+        ExternalLink: 'https://vpc.console.aliyun.com/vpc/{{region}}/switches'
+  SECURITY_GROUP_ID:
+    Type: string
+    Label:
+      Zh-cn: 选择安全组
+      En: Security Group
+    Component: 'Component::ECS::SecurityGroup'
+    Required: true
+    RequiredMessage: 请选择安全组
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        HasClear: true
+        ShowSearch: true
+        ShowRefresh: true
+        ShowExternalLink: true
+        ExternalLabel: 创建安全组
+        ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
+  SECRET_KEY:
+    Type: String
+    Label:
+      Zh-cn: Secret Key
+      En: Secret Key
+    LabelTip: "Secret Key 用于安全签名以及加密数据库中的敏感信息，可以通过 'openssl rand -hex 16' 生成一个密钥，再在前缀添加 'sk-' ，例如: 'sk-2d32e986bb9648a0c3655e85a2e8491b'"
+    Required: true
+    RequiredMessage: 请输入 Secret Key
+    Component: Password
+    ComponentProps:
+      Placeholder: 请输入Secret Key
+  DbConfig:
+    Type: json
+    Label:
+      Zh-cn: Postgres 数据库配置
+      En: Postgres 数据库配置
+      Link: 'https://rdsnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云数据库RDS
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+      CoverSource:
+        - label: 数据库名称
+          key: database
+          required: true
+          requiredMessage: 请输入数据库名称
+          defaultValue: dify
+        - label: 数据库地址
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '5432'
+          componentProps:
+            disabled: true
+  DB_PLUGIN_DATABASE_NAME:
+    Type: string
+    Label:
+      Zh-cn: 插件数据库名称
+      En: 插件数据库名称
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入插件数据库名称
+    ComponentProps:
+      DefaultValue: dify_plugin
+  RedisConfig:
+    Type: json
+    Label:
+      Zh-cn: Redis数据库
+      En: Redis数据库
+      Link: 'https://kvstore.console.aliyun.com/Redis'
+      LinkLabel:
+        Zh-cn: 云数据库 Tair
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: "Redis 连接地址"
+          key: host
+          required: true
+          requiredMessage: 请输入 Redis 连接地址
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '6379'
+          componentProps:
+            disabled: true
+        - label: 用户名
+          labelTip: 请输入默认账号类型的用户名
+          key: username
+          required: true
+          requiredMessage: 请输入用户名
+        - label: 密码
+          labelTip: 请输入默认账号类型的密码
+          key: password
+          type: Password
+          required: true
+          requiredMessage: 请输入密码
+          allowedPattern: '^[^@#]+$'
+          allowedPatternMessage: '密码中不能包含@和#'
+  PgVectorConfig:
+    Type: json
+    Label:
+      Zh-cn: 向量数据库 AnalyticDB 配置
+      En: 向量数据库 AnalyticDB 配置
+      Link: 'https://gpdbnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云原生数据仓库 AnalyticDB PostgreSQL
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: "数据库地址"
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '5432'
+          componentProps:
+            disabled: true
+  Api_NasConfig:
+    Type: json
+    Label:
+      Zh-cn: 选择 API NAS 文件系统
+      En: 选择 API NAS 文件系统
+    LabelMountTarget:
+      Zh-cn: 选择挂载点
+      En: 选择挂载点
+    Required: true
+    Component: 'Component::NAS::MountTarget'
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        NasId:
+          hasClear: true
+          showSearch: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onApiNasIdChange}}"
+      Validator: "{{validatorApiNasId}}"
+  Plugin_NasConfig:
+    Type: json
+    Label:
+      Zh-cn: 选择 Plugin NAS 文件系统
+      En: 选择 Plugin NAS 文件系统
+    LabelMountTarget:
+      Zh-cn: 选择挂载点
+      En: 选择挂载点
+    Required: true
+    Component: 'Component::NAS::MountTarget'
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        NasId:
+          hasClear: true
+          showSearch: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onPluginNasIdChange}}"
+      Validator: "{{validatorPluginNasId}}"
+MetaData:
+  - Label:
+      Zh-cn: 基础配置
+      En: Basic Config
+    Parameters:
+      - NAMESPACE
+      - VPC_ID
+      - VSWITCH_LIST
+      - SECURITY_GROUP_ID
+      - SECRET_KEY
+    Expanded: true
+  - Label:
+      Zh-cn: Postgres 数据库配置
+      En: Postgres 数据库配置
+    Parameters:
+      - DbConfig
+      - DB_PLUGIN_DATABASE_NAME
+    Expanded: true
+  - Label:
+      Zh-cn: Redis 数据库配置
+      En: Redis 数据库配置
+    Parameters:
+      - RedisConfig
+    Expanded: true
+  - Label:
+      Zh-cn: 向量数据库AnalyticDB配置
+      En: 向量数据库AnalyticDB配置
+    Parameters:
+      - PgVectorConfig
+    Expanded: true
+  - Label:
+      Zh-cn: API NAS 存储配置
+      En: API NAS 存储配置
+    Parameters:
+      - Api_NasConfig
+    Expanded: true
+  - Label:
+      Zh-cn: Plugin NAS 存储配置
+      En: Plugin NAS 存储配置
+    Parameters:
+      - Plugin_NasConfig
+    Expanded: true

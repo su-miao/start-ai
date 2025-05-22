@@ -1,0 +1,8 @@
+Composer:
+  SaePodGroup:
+    Component: sae_pod_group
+    Layout: horizontal
+    GroupItem:
+      - name: open-manus
+        key: MANUS
+        type: dynamicForm

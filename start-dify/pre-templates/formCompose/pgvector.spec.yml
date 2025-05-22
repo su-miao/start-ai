@@ -1,0 +1,72 @@
+Envs:
+  RegionId: "{{region}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  AnalyticDBInstanceId:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 实例ID
+      En: analyticDB 实例ID
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入analyticDB 实例ID
+  AnalyticDBRegionId:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 实例地域
+      En: analyticDB 实例地域
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入analyticDB 实例地域
+  AnalyticDBAccount:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 用户名
+      En: analyticDB 用户名
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入analyticDB 用户名
+  AnalyticDBPassword:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 账号密码
+      En: analyticDB 账号密码
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入 analyticDB 账号密码
+  AnalyticDBNamespace:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 命名空间
+      En: analyticDB 命名空间
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入实例地域
+  AnalyticDBNamespacePassword:
+    Type: String
+    Label:
+      Zh-cn: analyticDB 命名空间密码
+      En: analyticDB 命名空间密码
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入analyticDB 命名空间密码
+  AnalyticDBAkId:
+    Type: String
+    Label:
+      Zh-cn: 账号akId
+      En: 账号akId
+    Component: Password
+    Required: true
+    RequiredMessage: 请输入账号akId
+  AnalyticDBAkSecret:
+    Type: String
+    Label:
+      Zh-cn: 账号akSecret
+      En: 账号akSecret
+    Component: Password
+    Required: true
+    RequiredMessage: 请输入账号akSecret

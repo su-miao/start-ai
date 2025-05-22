@@ -1,0 +1,81 @@
+sources:
+  repo_0:
+    type: codeup
+    name: openManus_eFGq
+    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/OpenManus.git'
+    branch: master
+    certificate:
+      type: serviceConnection
+      serviceConnection: jsoo5b59y5n9sfc8
+defaultWorkspace: repo_0
+stages:
+  stage_0:
+    name: 阶段1
+    jobs:
+      job_0:
+        name: ConfigMap 配置项发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: API_KEY
+                  value: '{{API_KEY}}'
+                - key: VPC_ID
+                  value: '{{VPC_ID}}'
+                - key: MODEL
+                  value: '{{MODEL}}'
+                - key: BASE_URL
+                  value: '{{BASE_URL}}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              yamlPath: ./manifests/config.yaml
+        driven: auto
+        plugins: []
+  stage_1:
+    name: 阶段2
+    jobs:
+      job_0:
+        name: Deployment 应用发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: APP_NAME
+                  value: open-manus
+                - key: VPC_ID
+                  value: '{{VPC_ID}}'
+                - key: SECURITY_GROUP_ID
+                  value: '{{SECURITY_GROUP_ID}}'
+                - key: VSWITCH_LIST
+                  value: '{{VSWITCH_LIST}}'
+                - key: REGION_ID
+                  value: '{{REGION_ID}}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              yamlPath: ./manifests/deployment.yaml
+        driven: auto
+        plugins: []

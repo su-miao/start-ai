@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    sae.aliyun.com/micro-registration: "0"
+    sae.aliyun.com/nas-mount: '[{"mountDomain":"${NAS_MOUNT_DOMAIN}","mountPath":"/app/api/storage","nasId":"${NAS_ID}","nasPath":"app/api/storage","readOnly":false,"volumeName":"nas-1"}]'
+    sae.aliyun.com/security-group-id: ${SECURITY_GROUP_ID}
+    sae.aliyun.com/timezone: Asia/Shanghai
+    sae.aliyun.com/type: Image
+    sae.aliyun.com/vpc-id: ${VPC_ID}
+    sae.aliyun.com/vswitch-list: ${VSWITCH_LIST}
+  name: dify-worker
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      sae.aliyun.com/app-name: dify-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        sae.aliyun.com/app-name: dify-worker
+    spec:
+      containers:
+      - env:
+        - name: CONSOLE_WEB_URL
+        envFrom:
+        - configMapRef:
+            name: dify-worker
+        - secretRef:
+            name: dify-credentials
+        - secretRef:
+            name: dify-api
+        image: ${DIFY_API_IMAGE}
+        imagePullPolicy: Always
+        name: main
+        resources:
+          limits:
+            cpu: "4"
+            memory: 8Gi
+          requests:
+            cpu: "4"
+            memory: 8Gi
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
