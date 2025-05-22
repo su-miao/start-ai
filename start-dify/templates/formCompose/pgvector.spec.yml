@@ -6,30 +6,67 @@ CompProps:
     Values: "{{formValue}}"
     Disabled: "{{formDisabled}}"
 Parameters:
-  PgVectorConfig:
-    Type: json
+  AnalyticDBInstanceId:
+    Type: String
     Label:
-      Zh-cn: 向量数据库 AnalyticDB 配置
-      En: 向量数据库 AnalyticDB 配置
-      Link: 'https://gpdbnext.console.aliyun.com/'
-      LinkLabel:
-        Zh-cn: 云原生数据仓库 AnalyticDB PostgreSQL
+      Zh-cn: AnalyticDB 实例ID
+      En: AnalyticDB 实例ID
+    Component: Input
     Required: true
-    Component: 'Component::DB::Redis'
-    ComponentProps:
-      Hideform:
-        - verify
-        - database
-      CoverSource:
-        - label: "数据库地址"
-          key: host
-          required: true
-          requiredMessage: 请输入数据库地址
-        - label: 端口
-          key: port
-          required: true
-          requiredMessage: 请输入端口
-          type: NumberPicker
-          defaultValue: '5432'
-          componentProps:
-            disabled: true
+    RequiredMessage: AnalyticDB 实例ID
+  AnalyticDBRegionId:
+    Type: String
+    Label:
+      Zh-cn: AnalyticDB 实例地域
+      En: AnalyticDB 实例地域
+    Component: Input
+    Required: true
+    RequiredMessage: AnalyticDB 实例地域
+  AnalyticDBAccount:
+    Type: String
+    Label:
+      Zh-cn: AnalyticDB 用户名
+      En: AnalyticDB 用户名
+    Component: Input
+    Required: true
+    RequiredMessage: AnalyticDB 用户名
+  AnalyticDBPassword:
+    Type: String
+    Label:
+      Zh-cn: AnalyticDB 账号密码
+      En: AnalyticDB 账号密码
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入 AnalyticDB 账号密码
+  AnalyticDBNamespace:
+    Type: String
+    Label:
+      Zh-cn: AnalyticDB 命名空间
+      En: AnalyticDB 命名空间
+    Component: Input
+    Required: true
+    RequiredMessage: 请输入实例地域
+  AnalyticDBNamespacePassword:
+    Type: String
+    Label:
+      Zh-cn: AnalyticDB 命名空间密码
+      En: AnalyticDB 命名空间密码
+    Component: Input
+    Required: true
+    RequiredMessage: AnalyticDB 命名空间密码
+  AnalyticDBAkId:
+    Type: String
+    Label:
+      Zh-cn: AccessKey ID
+      En: AccessKey ID
+    Component: Password
+    Required: true
+    RequiredMessage: 请输入AccessKey ID
+  AnalyticDBAkSecret:
+    Type: String
+    Label:
+      Zh-cn: AccessKey Secret
+      En: AccessKey Secret
+    Component: Password
+    Required: true
+    RequiredMessage: 请输入AccessKey Secret
