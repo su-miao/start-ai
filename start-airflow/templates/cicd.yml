@@ -74,7 +74,7 @@ stages:
                 - key: OSS_AK_SECRET
                   value: '{{OSS_AK_SECRET}}'
                 - key: OSS_MOUNT_DESCS
-                  value: '{{OSS_MOUNT_DESCS}}'
+                  value: {{OSS_MOUNT_DESCS}}
               secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               stsToken: '${ALICLOUD_STS_TOKEN}'
