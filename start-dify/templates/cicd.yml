@@ -1,12 +1,14 @@
 sources:
   repo_0:
     type: codeup
-    name: dify_eFGq
-    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/dify.git'
+    name: dify_v2_RU0g
+    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/dify_v2.git'
     branch: master
+    triggerEvents:
+      - push
     certificate:
       type: serviceConnection
-      serviceConnection: jsoo5b59y5n9sfc8
+      serviceConnection: tk6qgcjcofquhcuc
 defaultWorkspace: repo_0
 stages:
   stage_0:
@@ -24,18 +26,28 @@ stages:
             name: Kubectl SAE 发布
             step: private/KubectlSae
             with:
-              secretKey: '${ALICLOUD_SECRET_KEY}'
-              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
+                - key: REGION_ID
+                  value: '{{REGION_ID}}'
                 - key: NAMESPACE
                   value: '{{NAMESPACE}}'
+                - key: REDIS_HOST
+                  value: '{{REDIS_HOST}}'
                 - key: DB_DATABASE_NAME
                   value: '{{DB_DATABASE_NAME}}'
+                - key: ANALYTICDB_INSTANCE_ID
+                  value: '{{ANALYTICDB_INSTANCE_ID}}'
+                - key: ANALYTICDB_REGION_ID
+                  value: '{{ANALYTICDB_REGION_ID}}'
+                - key: DB_HOST
+                  value: '{{DB_HOST}}'
                 - key: DB_PLUGIN_DATABASE_NAME
                   value: '{{DB_PLUGIN_DATABASE_NAME}}'
-              namespace: '{{NAMESPACE}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
+              namespace: '{{NAMESPACE}}'
               region: '{{REGION_ID}}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               yamlPath: manifests/configmap.yaml
         driven: auto
         plugins: []
@@ -54,36 +66,38 @@ stages:
             name: Kubectl SAE 发布
             step: private/KubectlSae
             with:
-              secretKey: '${ALICLOUD_SECRET_KEY}'
-              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
-                  value: {{NAMESPACE}}
-                - key: REDIS_HOST
-                  value: {{REDIS_HOST}}
-                - key: CELERY_BROKER_URL
-                  value: {{CELERY_BROKER_URL}}
+                  value: '{{NAMESPACE}}'
                 - key: SECRET_KEY
-                  value: {{SECRET_KEY}}
-                - key: PGVECTOR_PASSWORD
-                  value: {{PGVECTOR_PASSWORD}}
-                - key: DB_HOST
-                  value: {{DB_HOST}}
-                - key: PGVECTOR_USER
-                  value: {{PGVECTOR_USER}}
+                  value: '{{SECRET_KEY}}'
+                - key: ANALYTICDB_KEY_ID
+                  value: '{{ANALYTICDB_KEY_ID}}'
+                - key: ANALYTICDB_KEY_SECRET
+                  value: '{{ANALYTICDB_KEY_SECRET}}'
                 - key: DB_USERNAME
-                  value: {{DB_USERNAME}}
-                - key: PGVECTOR_HOST
-                  value: {{PGVECTOR_HOST}}
+                  value: '{{DB_USERNAME}}'
                 - key: REDIS_PASSWORD
-                  value: {{REDIS_PASSWORD}}
+                  value: '{{REDIS_PASSWORD}}'
+                - key: ANALYTICDB_NAMESPACE
+                  value: '{{ANALYTICDB_NAMESPACE}}'
+                - key: ANALYTICDB_PASSWORD
+                  value: '{{ANALYTICDB_PASSWORD}}'
+                - key: CELERY_BROKER_URL
+                  value: '{{CELERY_BROKER_URL}}'
+                - key: ANALYTICDB_NAMESPACE_PASSWORD
+                  value: '{{ANALYTICDB_NAMESPACE_PASSWORD}}'
+                - key: ANALYTICDB_ACCOUNT
+                  value: '{{ANALYTICDB_ACCOUNT}}'
                 - key: REDIS_USERNAME
-                  value: {{REDIS_USERNAME}}
+                  value: '{{REDIS_USERNAME}}'
                 - key: DB_PASSWORD
-                  value: {{DB_PASSWORD}}
-              namespace: {{NAMESPACE}}
+                  value: '{{DB_PASSWORD}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
-              region: {{REGION_ID}}
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               yamlPath: manifests/secret.yaml
         driven: auto
         plugins: []
@@ -102,32 +116,32 @@ stages:
             name: Kubectl SAE 发布
             step: private/KubectlSae
             with:
-              secretKey: '${ALICLOUD_SECRET_KEY}'
-              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
                   value: '{{NAMESPACE}}'
                 - key: REGION_ID
-                  value: {{REGION_ID}}
+                  value: '{{REGION_ID}}'
                 - key: ACCOUNT_ID
-                  value: {{ACCOUNT_ID}}
+                  value: '{{ACCOUNT_ID}}'
                 - key: PLUGIN_NAS_ID
-                  value: {{PLUGIN_NAS_ID}}
+                  value: '{{PLUGIN_NAS_ID}}'
                 - key: PLUGIN_NAS_MOUNT_DOMAIN
-                  value: {{PLUGIN_NAS_MOUNT_DOMAIN}}
+                  value: '{{PLUGIN_NAS_MOUNT_DOMAIN}}'
                 - key: API_NAS_MOUNT_DOMAIN
-                  value: {{API_NAS_MOUNT_DOMAIN}}
+                  value: '{{API_NAS_MOUNT_DOMAIN}}'
                 - key: VPC_ID
-                  value: {{VPC_ID}}
+                  value: '{{VPC_ID}}'
                 - key: SECURITY_GROUP_ID
-                  value: {{SECURITY_GROUP_ID}}
+                  value: '{{SECURITY_GROUP_ID}}'
                 - key: API_NAS_ID
-                  value: {{API_NAS_ID}}
+                  value: '{{API_NAS_ID}}'
                 - key: VSWITCH_LIST
-                  value: {{VSWITCH_LIST}}
-              namespace: {{NAMESPACE}}
+                  value: '{{VSWITCH_LIST}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
-              region: {{REGION_ID}}
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               yamlPath: manifests/deployment.yaml
           step_1:
             name: 应用 RUNNING 状态检测
@@ -217,11 +231,11 @@ stages:
             name: Kubectl SAE 发布
             step: private/KubectlSae
             with:
-              secretKey: '${ALICLOUD_SECRET_KEY}'
-              stsToken: '${ALICLOUD_STS_TOKEN}'
               variables:
                 - key: NAMESPACE
                   value: '{{NAMESPACE}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
               namespace: '{{NAMESPACE}}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               region: '{{REGION_ID}}'
