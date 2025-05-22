@@ -1,0 +1,29 @@
+Envs:
+  RegionId: "{{region}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  Api_NasConfig:
+    Type: json
+    Label:
+      Zh-cn: 选择 API NAS 文件系统
+      En: 选择 API NAS 文件系统
+    LabelMountTarget:
+      Zh-cn: 选择挂载点
+      En: 选择挂载点
+    Required: true
+    Component: 'Component::NAS::MountTarget'
+    ComponentProps:
+      VpcId: "{{vpcId}}"
+      SelectProps:
+        NasId:
+          hasClear: true
+          showRefresh: true
+          showExternalLink: true
+          externalLabel: 创建NAS文件系统
+          externalLink: 'https://nas.console.aliyun.com/nas/region/{{region}}/fileSystems'
+      OnChange: "{{onApiNasConfigChange}}"
+      Validator: "{{validatorApiNasConfig}}"

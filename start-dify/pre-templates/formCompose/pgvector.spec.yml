@@ -1,0 +1,35 @@
+Envs:
+  RegionId: "{{region}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  PgVectorConfig:
+    Type: json
+    Label:
+      Zh-cn: 向量数据库 AnalyticDB 配置
+      En: 向量数据库 AnalyticDB 配置
+      Link: 'https://gpdbnext.console.aliyun.com/'
+      LinkLabel:
+        Zh-cn: 云原生数据仓库 AnalyticDB PostgreSQL
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: "数据库地址"
+          key: host
+          required: true
+          requiredMessage: 请输入数据库地址
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '5432'
+          componentProps:
+            disabled: true

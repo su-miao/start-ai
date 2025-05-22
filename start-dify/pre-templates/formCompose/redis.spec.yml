@@ -1,0 +1,48 @@
+Envs:
+  RegionId: "{{region}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  RedisConfig:
+    Type: json
+    Label:
+      Zh-cn: Redis数据库
+      En: Redis数据库
+      Link: 'https://kvstore.console.aliyun.com/Redis'
+      LinkLabel:
+        Zh-cn: 云数据库 Tair
+    Required: true
+    Component: 'Component::DB::Redis'
+    ComponentProps:
+      Hideform:
+        - verify
+        - database
+      CoverSource:
+        - label: "Redis 连接地址"
+          key: host
+          required: true
+          requiredMessage: 请输入 Redis 连接地址
+        - label: 端口
+          key: port
+          required: true
+          requiredMessage: 请输入端口
+          type: NumberPicker
+          defaultValue: '6379'
+          componentProps:
+            disabled: true
+        - label: 用户名
+          labelTip: 请输入默认账号类型的用户名
+          key: username
+          required: true
+          requiredMessage: 请输入用户名
+        - label: 密码
+          labelTip: 请输入默认账号类型的密码
+          key: password
+          type: Password
+          required: true
+          requiredMessage: 请输入密码
+          allowedPattern: '^[^@#]+$'
+          allowedPatternMessage: '密码中不能包含@和#'

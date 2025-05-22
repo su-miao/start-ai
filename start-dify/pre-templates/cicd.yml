@@ -1,0 +1,295 @@
+sources:
+  repo_0:
+    type: codeup
+    name: dify_eFGq
+    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/dify.git'
+    branch: master
+    certificate:
+      type: serviceConnection
+      serviceConnection: jsoo5b59y5n9sfc8
+defaultWorkspace: repo_0
+stages:
+  stage_0:
+    name: 阶段1
+    jobs:
+      job_0:
+        name: ConfigMap 配置项发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: DB_DATABASE_NAME
+                  value: '{{DB_DATABASE_NAME}}'
+                - key: DB_PLUGIN_DATABASE_NAME
+                  value: '{{DB_PLUGIN_DATABASE_NAME}}'
+              namespace: '{{NAMESPACE}}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: '{{REGION_ID}}'
+              yamlPath: manifests/configmap.yaml
+        driven: auto
+        plugins: []
+  stage_1:
+    name: 新阶段
+    jobs:
+      job_0:
+        name: Secret 保密字典发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              variables:
+                - key: NAMESPACE
+                  value: {{NAMESPACE}}
+                - key: REDIS_HOST
+                  value: {{REDIS_HOST}}
+                - key: CELERY_BROKER_URL
+                  value: {{CELERY_BROKER_URL}}
+                - key: SECRET_KEY
+                  value: {{SECRET_KEY}}
+                - key: PGVECTOR_PASSWORD
+                  value: {{PGVECTOR_PASSWORD}}
+                - key: DB_HOST
+                  value: {{DB_HOST}}
+                - key: PGVECTOR_USER
+                  value: {{PGVECTOR_USER}}
+                - key: DB_USERNAME
+                  value: {{DB_USERNAME}}
+                - key: PGVECTOR_HOST
+                  value: {{PGVECTOR_HOST}}
+                - key: REDIS_PASSWORD
+                  value: {{REDIS_PASSWORD}}
+                - key: REDIS_USERNAME
+                  value: {{REDIS_USERNAME}}
+                - key: DB_PASSWORD
+                  value: {{DB_PASSWORD}}
+              namespace: {{NAMESPACE}}
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: {{REGION_ID}}
+              yamlPath: manifests/secret.yaml
+        driven: auto
+        plugins: []
+  stage_2:
+    name: 新阶段
+    jobs:
+      job_0:
+        name: Deployment 应用发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: REGION_ID
+                  value: {{REGION_ID}}
+                - key: ACCOUNT_ID
+                  value: {{ACCOUNT_ID}}
+                - key: PLUGIN_NAS_ID
+                  value: {{PLUGIN_NAS_ID}}
+                - key: PLUGIN_NAS_MOUNT_DOMAIN
+                  value: {{PLUGIN_NAS_MOUNT_DOMAIN}}
+                - key: API_NAS_MOUNT_DOMAIN
+                  value: {{API_NAS_MOUNT_DOMAIN}}
+                - key: VPC_ID
+                  value: {{VPC_ID}}
+                - key: SECURITY_GROUP_ID
+                  value: {{SECURITY_GROUP_ID}}
+                - key: API_NAS_ID
+                  value: {{API_NAS_ID}}
+                - key: VSWITCH_LIST
+                  value: {{VSWITCH_LIST}}
+              namespace: {{NAMESPACE}}
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: {{REGION_ID}}
+              yamlPath: manifests/deployment.yaml
+          step_1:
+            name: 应用 RUNNING 状态检测
+            step: Command
+            with:
+              variables: []
+              ifGivenShell: false
+              run: >
+                #!/bin/bash
+
+                set -eo pipefail
+
+
+                NAMESPACE="{{NAMESPACE}}"
+
+                MAX_RETRIES=60
+
+                RETRY_DELAY=5
+
+                DEPLOYMENTS=("dify-api" "dify-worker" "dify-sandbox" "dify-web"
+                "dify-nginx")
+
+
+                command -v kubectl-sae >/dev/null 2>&1 || { 
+                    echo "[FATAL] kubectl-sae 命令未找到" >&2
+                    exit 127
+                }
+
+
+                if ! kubectl-sae get ns "$NAMESPACE" -o name >/dev/null 2>&1;
+                then
+                    echo "[FATAL] 命名空间 $NAMESPACE 不存在" >&2
+                    exit 1
+                fi
+
+
+                check_deployment() {
+                    local deployment=$1
+                    local attempt=0
+                    
+                    echo "[INFO] 开始检查部署: $deployment"
+                    
+                    while (( attempt++ < MAX_RETRIES )); do
+                        if output=$(kubectl-sae get deployment.apps/"$deployment" -n "$NAMESPACE" 2>&1); then
+                            if echo "$output" | grep -q "RUNNING"; then
+                                echo "[SUCCESS] $deployment 状态正常"
+                                return 0
+                            fi
+                        else
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
+                        fi
+
+                        if (( attempt % 5 == 0 )); then
+                            echo "[CHECK] $deployment 检查中 (尝试次数: $attempt)"
+                        fi
+                        
+                        sleep $RETRY_DELAY
+                    done
+
+                    echo "[FATAL] $deployment 未在预期时间内就绪" >&2
+                    exit 1
+                }
+
+
+                for deploy in "${DEPLOYMENTS[@]}"; do
+                    check_deployment "$deploy"
+                done
+
+
+                echo "所有部署检查通过"
+
+                exit 0
+        driven: auto
+        plugins: []
+  stage_3:
+    name: 新阶段
+    jobs:
+      job_0:
+        name: Service 公网访问发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+              namespace: '{{NAMESPACE}}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              region: '{{REGION_ID}}'
+              yamlPath: manifests/service.yaml
+          step_1:
+            name: Service 就绪状态检测
+            step: Command
+            with:
+              variables: []
+              ifGivenShell: false
+              run: >-
+                set -eo pipefail
+
+
+                NAMESPACE="{{NAMESPACE}}"
+
+                MAX_RETRIES=60
+
+                RETRY_DELAY=5
+
+
+                command -v kubectl-sae >/dev/null 2>&1 || { 
+                    echo "[FATAL] kubectl-sae 命令未找到" >&2
+                    exit 127
+                }
+
+
+                if ! kubectl-sae get ns "$NAMESPACE" -o name >/dev/null 2>&1;
+                then
+                    echo "[FATAL] 命名空间 $NAMESPACE 不存在" >&2
+                    exit 1
+                fi
+
+
+                check_deployment() {
+                    
+                    echo "[INFO] 开始检查服务: internet-dify-nginx"
+                    
+                    while (( attempt++ < MAX_RETRIES )); do
+                        if output=$(kubectl-sae get service internet-dify-nginx -n "$NAMESPACE" 2>&1); then
+                            if ! echo "$output" | grep -q "pending"; then
+                                echo "[SUCCESS] internet-dify-nginx 状态正常"
+                                return 0
+                            fi
+                        else
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
+                        fi
+
+                        if (( attempt % 5 == 0 )); then
+                            echo "[CHECK] internet-dify-nginx 检查中 (尝试次数: $attempt)"
+                        fi
+                        
+                        sleep $RETRY_DELAY
+                    done
+
+                    echo "[FATAL] internet-dify-nginx 未在预期时间内就绪" >&2
+                    exit 1
+                }
+
+
+                check_deployment 
+
+
+                echo "服务部署完成"
+
+                kubectl-sae get service internet-dify-nginx -n "$NAMESPACE"
+
+
+                exit 0
+        driven: auto
+        plugins: []
