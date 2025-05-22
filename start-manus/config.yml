@@ -21,5 +21,13 @@ SceneProfiles:
     Spec:
       HEADER: "templates/formCompose/header.spec.yml"
       MANUS: "templates/formCompose/manus.spec.yml"
+    PreDocumentation:
+      zh-cn: "pre-docs/zh-cn/index.md"
+    PreTemplate: "pre-templates/cicd.yml"
+    PreFormTemplate: "pre-templates/form.yml"
+    PreFlowTemplate: "pre-templates/msa.yml"
+    PreSpec:
+      HEADER: "pre-templates/formCompose/header.spec.yml"
+      MANUS: "pre-templates/formCompose/manus.spec.yml"
 
 
