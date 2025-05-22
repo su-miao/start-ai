@@ -1,0 +1,55 @@
+Envs:
+  RegionId: "{{region}}"
+  AccountId: "{{AccountId}}"
+CompProps:
+  FormProps:
+    OnChange: "{{onFormChange}}"
+    Values: "{{formValue}}"
+    Disabled: "{{formDisabled}}"
+Parameters:
+  Oss_Config:
+    Type: json
+    LabelAkId:
+      Zh-cn: AccessKey ID
+      En: AccessKey ID
+    LabelAkSecret:
+      Zh-cn: AccessKey Secret
+      En: AccessKey Secret
+    LabelOssMount:
+      Zh-cn: Oss Mount
+      En: Oss Mount
+    Required: true
+    Component: 'Component::OSS::OssMount'
+    ComponentProps:
+      RegionId: "{{region}}"
+      VpcId: "{{vpcId}}"
+      Validator: "{{validatorOssMount}}"
+      ossAkIdProps:
+        key: ossAkId
+        placeholder: 请输入AccessKey ID
+        required: true
+      ossAkSecretProps:
+        key: ossAkSecret
+        placeholder: 请输入AccessKey Secret
+        required: true
+      ossMountProps:
+        key: ossMount
+        required: true
+        ossMountFormItemProps:
+          - label: Bucket
+            key: bucketName
+            required: true
+            requiredMessage: 请选择Bucket
+            type: Select
+            componentProps:
+              disabled: "{{formDisabled}}"
+          - label: 挂载路径
+            key: bucketPath
+            required: true
+            requiredMessage: 请输入挂载路径
+            type: Input
+          - label: 容器路径
+            key: mountPath
+            required: true
+            requiredMessage: 请输入容器路径
+            type: Input

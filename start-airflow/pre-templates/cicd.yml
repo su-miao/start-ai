@@ -1,0 +1,246 @@
+sources:
+  repo_0:
+    type: codeup
+    name: airflow_zlXS
+    endpoint: 'https://codeup.aliyun.com/67ed24ef8571f8159f9ac1a8/airflow.git'
+    branch: master
+    certificate:
+      type: serviceConnection
+      serviceConnection: eg7rpeig7t71yatf
+defaultWorkspace: repo_0
+stages:
+  stage_0:
+    name: 新阶段
+    jobs:
+      job_0:
+        name: Secret 数据库连接
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: DB_CONNECTION
+                  value: '{{DB_CONNECTION}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              yamlPath: manifests/secret.yaml
+        driven: auto
+        plugins: []
+  stage_1:
+    name: 部署
+    jobs:
+      job_0:
+        name: Deployment 应用发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+                - key: REGION_ID
+                  value: '{{REGION_ID}}'
+                - key: PHYSICAL_REGION_ID
+                  value: '{{PHYSICAL_REGION_ID}}'
+                - key: ACCOUNT_ID
+                  value: '{{ACCOUNT_ID}}'
+                - key: AIRFLOW_NAMESPACE
+                  value: '${AIRFLOW_NAMESPACE}'
+                - key: VPC_ID
+                  value: '{{VPC_ID}}'
+                - key: SECURITY_GROUP_ID
+                  value: '{{SECURITY_GROUP_ID}}'
+                - key: VSWITCH_LIST
+                  value: '{{VSWITCH_LIST}}'
+                - key: OSS_AK_ID
+                  value: '{{OSS_AK_ID}}'
+                - key: OSS_AK_SECRET
+                  value: '{{OSS_AK_SECRET}}'
+                - key: OSS_MOUNT_DESCS
+                  value: {{OSS_MOUNT_DESCS}}
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              yamlPath: manifests/deployment.yaml
+          step_1:
+            name: 应用 Running 状态检测
+            step: Command
+            with:
+              variables:
+                - key: NAMESPACE
+                  value: difytest7
+              ifGivenShell: false
+              run: >-
+                #!/bin/bash\nset -eo pipefail
+
+
+                NAMESPACE="{{NAMESPACE}}"
+
+                MAX_RETRIES=60
+
+                RETRY_DELAY=5
+
+                DEPLOYMENTS=("sae-airflow-scheduler" "sae-airflow-webserver")
+
+
+                command -v kubectl-sae >/dev/null 2>&1 || { 
+                    echo "[FATAL] kubectl-sae 命令未找到" >&2
+                    exit 127
+                }
+
+
+                if ! kubectl-sae get ns "$NAMESPACE" -o name >/dev/null 2>&1;
+                then
+                    echo "[FATAL] 命名空间 $NAMESPACE 不存在" >&2
+                    exit 1
+                fi
+
+
+                check_deployment() {
+                    local deployment=$1
+                    local attempt=0
+                    
+                    echo "[INFO] 开始检查部署: $deployment"
+                    
+                    while (( attempt++ < MAX_RETRIES )); do
+                        if output=$(kubectl-sae get deployment.apps/"$deployment" -n "$NAMESPACE" 2>&1); then
+                            if echo "$output" | grep -q "RUNNING"; then
+                                echo "[SUCCESS] $deployment 状态正常"
+                                return 0
+                            fi
+                        else
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
+                        fi
+
+                        if (( attempt % 5 == 0 )); then
+                            echo "[CHECK] $deployment 检查中 (尝试次数: $attempt)"
+                        fi
+                        
+                        sleep $RETRY_DELAY
+                    done
+
+                    echo "[FATAL] $deployment 未在预期时间内就绪" >&2
+                    exit 1
+                }
+
+
+                for deploy in "${DEPLOYMENTS[@]}"; do
+                    check_deployment "$deploy"
+                done
+
+
+                echo "所有部署检查通过"
+        driven: auto
+        plugins: []
+  stage_2:
+    name: 新阶段
+    jobs:
+      job_0:
+        name: Service 公网访问发布
+        runsOn:
+          group: public/cn-beijing
+          labels: 'linux,amd64'
+          container: >-
+            build-steps-public-registry.cn-beijing.cr.aliyuncs.com/build-steps/alinux3:latest
+        steps:
+          step_0:
+            name: Kubectl SAE 发布
+            step: private/KubectlSae
+            with:
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+              secretKey: '${ALICLOUD_SECRET_KEY}'
+              accessKey: '${ALICLOUD_ACCESS_KEY}'
+              stsToken: '${ALICLOUD_STS_TOKEN}'
+              namespace: '{{NAMESPACE}}'
+              region: '{{REGION_ID}}'
+              yamlPath: manifests/service.yaml
+          step_1:
+            name: Service 就绪状态检测
+            step: Command
+            with:
+              variables:
+                - key: NAMESPACE
+                  value: '{{NAMESPACE}}'
+              ifGivenShell: false
+              run: >-
+                #!/bin/bash\nset -eo pipefail
+
+
+                NAMESPACE="{{NAMESPACE}}"
+
+                MAX_RETRIES=60
+
+                RETRY_DELAY=5
+
+                DEPLOYMENTS=("sae-airflow-webserver")
+
+
+                command -v kubectl-sae >/dev/null 2>&1 || { 
+                    echo "[FATAL] kubectl-sae 命令未找到" >&2
+                    exit 127
+                }
+
+
+                if ! kubectl-sae get ns "$NAMESPACE" -o name >/dev/null 2>&1;
+                then
+                    echo "[FATAL] 命名空间 $NAMESPACE 不存在" >&2
+                    exit 1
+                fi
+
+
+                check_deployment() {
+                    
+                    echo "[INFO] 开始检查服务: internet-sae-airflow-webserver"
+                    
+                    while (( attempt++ < MAX_RETRIES )); do
+                        if output=$(kubectl-sae get service internet-sae-airflow-webserver -n "$NAMESPACE" 2>&1); then
+                            if ! echo "$output" | grep -q "pending"; then
+                                echo "[SUCCESS] internet-sae-airflow-webserver 状态正常"
+                                return 0
+                            fi
+                        else
+                            echo "[ERROR] 获取状态失败: ${output:0:200}..."
+                        fi
+
+                        if (( attempt % 5 == 0 )); then
+                            echo "[CHECK] internet-sae-airflow-webserver 检查中 (尝试次数: $attempt)"
+                        fi
+                        
+                        sleep $RETRY_DELAY
+                    done
+
+                    echo "[FATAL] internet-sae-airflow-webserver 未在预期时间内就绪" >&2
+                    exit 1
+                }
+
+
+                check_deployment 
+
+
+                echo "服务部署完成"
+
+                kubectl-sae get service internet-sae-airflow-webserver -n
+                "$NAMESPACE"
+        driven: auto
+        plugins: []
