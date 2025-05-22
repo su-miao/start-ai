@@ -9,7 +9,7 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 1. 公网可访问：要求目标 VPC 内可访问公网。
 2. 阿里云 RDS 数据库：PostgreSQL 17 或其他产品。
 3. 阿里云 Tair 数据库：Redis 开源版或 Tair 企业版。
-4. 阿里云 AnalyticDB（pgvector）。
+4. 阿里云 AnalyticDB：6.0 标准版。
 5. 阿里云 NAS 存储。
 
 # 使用说明
@@ -76,6 +76,14 @@ Dify 是一个开源的 LLM 应用开发平台，是生成式 AI 应用创新引
 4. RDS 数据库需要先提前创建好 dify 数据库，并授权给之前创建的 高权限账号
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01ILCKQC1Z1QJvuzoFa_!!6000000003134-2-tps-718-624.png)
-解释
+
+5. AnalyticDB 计算节点规格需要在 4 核 16GB 及以上，并开启向量引擎优化
+
+![](https://img.alicdn.com/imgextra/i2/O1CN010igM941gUv96RNNsj_!!6000000004146-2-tps-2796-1132.png)
+
+7. AnalyticDB 需要创建初始账号，并将 Dify 应用所在 VPC 网段加入白名单
+
+![](https://img.alicdn.com/imgextra/i4/O1CN01xi7G941ocioiddDTu_!!6000000005246-2-tps-2986-1488.png)
+![](https://img.alicdn.com/imgextra/i1/O1CN01QmOIxS1umEk2Xom9E_!!6000000006079-2-tps-2990-1152.png)
 
 
