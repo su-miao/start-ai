@@ -89,7 +89,7 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: difytest7
+                  value: '{{NAMESPACE}}'
               ifGivenShell: false
               run: >-
                 #!/bin/bash\nset -eo pipefail

@@ -75,6 +75,8 @@ stages:
                   value: '{{OSS_AK_SECRET}}'
                 - key: OSS_MOUNT_DESCS
                   value: {{OSS_MOUNT_DESCS}}
+                - key: DATABASE_SQL_CON
+                  value: {{DATABASE_SQL_CON}}
               secretKey: '${ALICLOUD_SECRET_KEY}'
               accessKey: '${ALICLOUD_ACCESS_KEY}'
               stsToken: '${ALICLOUD_STS_TOKEN}'
@@ -87,7 +89,7 @@ stages:
             with:
               variables:
                 - key: NAMESPACE
-                  value: difytest7
+                  value: '{{NAMESPACE}}'
               ifGivenShell: false
               run: >-
                 #!/bin/bash\nset -eo pipefail
