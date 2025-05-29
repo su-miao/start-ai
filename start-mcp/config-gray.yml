@@ -6,16 +6,15 @@ SceneMetadata:
     zh-cn: "MCP Server"
   Description:
     zh-cn: "MCP Server 官方示例，基于 SSE 协议"
-  Logo: "main/resources/icons/scence_logo.png"
+  Logo: "gray/resources/icons/scence_logo.png"
   Visible: true
 SceneProfiles:
   - DisplayName:
       zh-cn: MCP Server
     DeployType: SaeFlow
     Documentation:
-      zh-cn: "main/docs/zh-cn/index.md"
-    Spec: "main/templates/cicd.spec.yml"
-    Template: "main/templates/cicd.yml"
-    FormTemplate: "main/templates/form.yml"
-
+      zh-cn: "gray/docs/zh-cn/index.md"
+    Spec: "gray/templates/cicd.spec.yml"
+    Template: "gray/templates/cicd.yml"
+    FormTemplate: "gray/templates/form.yml"
 

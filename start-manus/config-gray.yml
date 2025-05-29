@@ -8,19 +8,19 @@ SceneMetadata:
   Description:
     zh-cn: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能。（该模板镜像较大，约12G，实例启动大约12分钟） "
     en: "多功能 AI 智能体，支持代码执行、文件操作、网络搜索等任务。以完全开放的方式实现通用型 AI 代理功能。（该模板镜像较大，约12G，实例启动大约12分钟） "
-  Logo: "main/resources/icons/scence_logo.png"
+  Logo: "gray/resources/icons/scence_logo.png"
   Visible: true
 SceneProfiles:
   - DisplayName:
       zh-cn: Open Manus
     DeployType: SaeFlow
     Documentation:
-      zh-cn: "main/docs/zh-cn/index.md"
-    Template: "main/templates/cicd.yml"
-    FormTemplate: "main/templates/form.yml"
-    FlowTemplate: "main/templates/msa.yml"
+      zh-cn: "gray/docs/zh-cn/index.md"
+    Template: "gray/templates/cicd.yml"
+    FormTemplate: "gray/templates/form.yml"
+    FlowTemplate: "gray/templates/msa.yml"
     Spec:
-      HEADER: "main/templates/formCompose/header.spec.yml"
-      MANUS: "main/templates/formCompose/manus.spec.yml"
+      HEADER: "gray/templates/formCompose/header.spec.yml"
+      MANUS: "gray/templates/formCompose/manus.spec.yml"
 
 
