@@ -8,35 +8,23 @@ SceneMetadata:
   Description:
     zh-cn: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
     en: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
-  Logo: "resources/icons/scence_logo.png"
+  Logo: "main/resources/icons/scence_logo.png"
 SceneProfiles:
   - DisplayName:
       zh-cn: Dify社区版
     DeployType: SaeFlow
     Documentation:
-      zh-cn: "docs/zh-cn/index.md"
-    Template: "templates/cicd.yml"
-    FlowTemplate: "templates/msa.yml"
-    FormTemplate: "templates/form.yml"
+      zh-cn: "main/docs/zh-cn/index.md"
+    Template: "main/templates/cicd.yml"
+    FlowTemplate: "main/templates/msa.yml"
+    FormTemplate: "main/templates/form.yml"
     Spec: 
-      HEADER: "templates/formCompose/header.spec.yml"
-      DB: "templates/formCompose/db.spec.yml"
-      API_NAS: "templates/formCompose/api_nas.spec.yml"
-      PGVECTOR: "templates/formCompose/pgvector.spec.yml"
-      REDIS: "templates/formCompose/redis.spec.yml"
-      PLUGIN_NAS: "templates/formCompose/plugin_nas.spec.yml"
-    PreDocumentation:
-      zh-cn: "pre-docs/zh-cn/index.md"
-    PreTemplate: "pre-templates/cicd.yml"
-    PreFlowTemplate: "pre-templates/msa.yml"
-    PreFormTemplate: "pre-templates/form.yml"
-    PreSpec: 
-      HEADER: "pre-templates/formCompose/header.spec.yml"
-      DB: "pre-templates/formCompose/db.spec.yml"
-      API_NAS: "pre-templates/formCompose/api_nas.spec.yml"
-      PGVECTOR: "pre-templates/formCompose/pgvector.spec.yml"
-      REDIS: "pre-templates/formCompose/redis.spec.yml"
-      PLUGIN_NAS: "pre-templates/formCompose/plugin_nas.spec.yml"
+      HEADER: "main/templates/formCompose/header.spec.yml"
+      DB: "main/templates/formCompose/db.spec.yml"
+      API_NAS: "main/templates/formCompose/api_nas.spec.yml"
+      PGVECTOR: "main/templates/formCompose/pgvector.spec.yml"
+      REDIS: "main/templates/formCompose/redis.spec.yml"
+      PLUGIN_NAS: "main/templates/formCompose/plugin_nas.spec.yml"
  
 
 

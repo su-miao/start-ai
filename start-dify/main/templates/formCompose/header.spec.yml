@@ -7,33 +7,19 @@ CompProps:
       Row: 
         Gutter: 20
       Col:
-        Version:
-          Span: 3
         NAMESPACE:
-          Span: 4
+          Span: 5
         VPC_ID:
           Span: 5
         VSWITCH_LIST:
-          Span: 4
+          Span: 5
         SECURITY_GROUP_ID:
-          Span: 4
+          Span: 5
         SECRET_KEY:
           Span: 4
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
 Parameters:
-  Version:
-    Type: string
-    Label:
-      Zh-cn: 版本
-      En: Version
-    Required: true
-    Component: Select
-    ComponentProps:
-      DataSource: "{{versions}}"
-      Disabled: "{{formDisabled}}"
-      Value: "{{version}}"
-      OnChange: "{{onVersionChange}}"
   NAMESPACE:
     Type: string
     Label:

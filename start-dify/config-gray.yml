@@ -1,0 +1,28 @@
+Parameters:
+  Region: "cn-hangzhou"
+  Name: "start-dify"
+SceneMetadata:
+  Name:
+    zh-cn: "Dify 社区版"
+    en: "Dify 社区版"
+  Description:
+    zh-cn: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
+    en: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
+  Logo: "gray/resources/icons/scence_logo.png"
+SceneProfiles:
+  - DisplayName:
+      zh-cn: Dify社区版
+    DeployType: SaeFlow
+    Documentation:
+      zh-cn: "gray/docs/zh-cn/index.md"
+    Template: "gray/templates/cicd.yml"
+    FlowTemplate: "gray/templates/msa.yml"
+    Spec: 
+      HEADER: "gray/templates/formCompose/header.spec.yml"
+      DB: "gray/templates/formCompose/db.spec.yml"
+      API_NAS: "gray/templates/formCompose/api_nas.spec.yml"
+      PGVECTOR: "gray/templates/formCompose/pgvector.spec.yml"
+      REDIS: "gray/templates/formCompose/redis.spec.yml"
+      PLUGIN_NAS: "gray/templates/formCompose/plugin_nas.spec.yml"
+
+
