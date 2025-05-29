@@ -9,6 +9,7 @@ SceneMetadata:
     zh-cn: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
     en: "Dify.AI 是 LLMOps 平台，简化 AI 应用开发和集成，支持可视化管理。"
   Logo: "main/resources/icons/scence_logo.png"
+  Visible: true
 SceneProfiles:
   - DisplayName:
       zh-cn: Dify社区版
