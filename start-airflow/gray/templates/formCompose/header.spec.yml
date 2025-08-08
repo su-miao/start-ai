@@ -8,13 +8,15 @@ CompProps:
         Gutter: 20
       Col:
         NAMESPACE:
-          Span: 6
+          Span: 5
         VPC_ID:
-          Span: 6
+          Span: 5
         VSWITCH_LIST:
-          Span: 6
+          Span: 5
         SECURITY_GROUP_ID:
-          Span: 6
+          Span: 5
+        INSTANCE_TYPE:
+          Span: 4
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
 Parameters:
@@ -73,3 +75,22 @@ Parameters:
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
         Disabled: "{{formDisabled}}"
+  INSTANCE_TYPE:
+    Type: string
+    Label:
+      Zh-cn: 实例类型
+      En: Instance Type
+    LabelTip: "{{instanceTypeTip}}"
+    Component: Select
+    Required: true
+    ComponentProps:
+      DataSource:
+        - Label: "default 实例"
+          Value: "default"
+        - Label: "BestEffort 实例"
+          Value: "default1"
+        - Label: "BestEffort 优先"
+          Value: "default2"
+      Value: "{{instanceType}}"
+      Disabled: "{{formDisabled}}"
+      HasClear: true
