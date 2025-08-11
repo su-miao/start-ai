@@ -15,7 +15,7 @@ CompProps:
           Span: 5
         SECURITY_GROUP_ID:
           Span: 5
-        INSTANCE_TYPE:
+        AIRFLOW__KUBERNETES_EXECUTOR__BESTEFFORT_TYPE:
           Span: 4
     OnChange: "{{onFormChange}}"
     Values: "{{formValue}}"
@@ -75,12 +75,12 @@ Parameters:
         ExternalLabel: 创建安全组
         ExternalLink: 'https://ecs.console.aliyun.com/securityGroup/region/{{region}}'
         Disabled: "{{formDisabled}}"
-  INSTANCE_TYPE:
+  AIRFLOW__KUBERNETES_EXECUTOR__BESTEFFORT_TYPE:
     Type: string
     Label:
       Zh-cn: 实例类型
-      En: Instance Type
-    LabelTip: "{{instanceTypeTip}}"
+      En: BestEffort Type
+    LabelTip: "{{bestEffortTypeTip}}"
     Component: Select
     Required: true
     ComponentProps:
@@ -88,9 +88,9 @@ Parameters:
         - Label: "default 实例"
           Value: "default"
         - Label: "BestEffort 实例"
-          Value: "default1"
+          Value: "besteffort"
         - Label: "BestEffort 优先"
-          Value: "default2"
-      Value: "{{instanceType}}"
+          Value: "try-besteffort"
+      Value: "{{bestEffortType}}"
       Disabled: "{{formDisabled}}"
       HasClear: true
