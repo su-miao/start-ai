@@ -33,7 +33,6 @@ Parameters:
       DataSource: "{{versions}}"
       Disabled: "{{formDisabled}}"
       Value: "{{version}}"
-      OnChange: "{{onVersionChange}}"
   NAMESPACE:
     Type: string
     Label:
